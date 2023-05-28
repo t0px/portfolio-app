@@ -3,6 +3,7 @@ import { Button, Grid, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { useState } from "react";
+import MainText from "../MainText";
 
 const PrimaryButton = styled(Button)({
   backgroundColor: "transparent",
@@ -15,11 +16,6 @@ const PrimaryButton = styled(Button)({
   textTransform: "none",
   fontSize: 20,
   fontWeight: 500,
-  "&:hover": {
-    color: "black",
-    backgroundColor: "#BFB7A4",
-    outline: "none",
-  },
 });
 
 const SecondaryButton = styled(Button)({
@@ -43,29 +39,21 @@ const SecondaryButton = styled(Button)({
 
 const Hero = () => {
   return (
-    <Grid item xs={12} mt={15} component="section" sx={{flexDirection: "column", textAlign: {xs: "center", sm: "start"}}}>
+    <Grid
+      item
+      xs={12}
+      mt={15}
+      component="section"
+      sx={{ flexDirection: "column", textAlign: { xs: "center", sm: "start" } }}
+    >
       <Box>
-        <Typography
-          variant="h1"
-          sx={{
-            fontWeight: 400,
-            color: "#FFCA7A",
-            fontSize: {
-              xs: 30,
-              md: 40,
-              lg: 60,
-            },
-            maxWidth: {
-              sm: "60%",
-              md: "60%",
-              lg: "40%",
-            },
-            letterSpacing: 2.5,
-            mb: 3,
-          }}
-        >
-          Hi, my name is <strong>Roland Meir.</strong>
-        </Typography>
+        <MainText
+          title={
+            <span>
+              Hi, my name is <strong>Roland Meir.</strong>
+            </span>
+          }
+        />
         <Typography
           variant="h2"
           sx={{
@@ -86,9 +74,13 @@ const Hero = () => {
       <Box>
         <PrimaryButton
           variant="contained"
-          sx={{ marginRight: {lg: 2.5}, marginBottom: {xs: "1.5rem", xsc: 0} }}
+          sx={{
+            marginRight: { lg: 2.5 },
+            marginBottom: { xs: "1.5rem", xsc: 0 },
+          }}
           component="a"
           href="#contact"
+          className="primary-btn"
         >
           Hire Me
         </PrimaryButton>

@@ -6,7 +6,7 @@ import styled from "@emotion/styled";
 import Home from "./components/Home/Home";
 import Knowledge from "./components/Knowledge/Knowledge";
 import Projects from "./components/Projects/Projects";
-import About from "./components/About/Projects";
+import About from "./components/About/About";
 import Contact from "./components/Contact/Contact";
 import { Parallax, ParallaxLayer } from "@react-spring/parallax";
 import Sidebar from "./components/Sidebar";
