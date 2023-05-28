@@ -1,0 +1,25 @@
+.sidenav-item::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    background: #AB9F85;
+    transition: width 0.5s ease;
+}
+
+.sidenav-item {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    width: fit-content;
+    transition: color 0.5s ease;
+}
+
+.sidenav-item:hover::before {
+    width: 100%;
+}
+
+.sidenav-item:hover {
+    color: white;
+}

@@ -1,10 +1,17 @@
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     background: #1C1A1B;
     margin: 0;
     padding: 0;
     display: flex;
-    justify-content: center;
-    height: 2000px;
+    align-items: center;
+    flex-direction: column;
+    background-image: url(src/assets/Bg-Noise.png);
+    background-position: 0px 0px;
+    background-size: 100% 100vh;
 }
 
 * {
@@ -12,30 +19,4 @@ body {
     padding: 0;
     box-sizing: border-box;
     list-style: none;
-}
-
-.sidenav-item::before {
-    content: '';
-    position: absolute;
-    bottom: -5px;
-    width: 0;
-    height: 2px;
-    background: #AB9F85;
-    transition: width 0.5s ease;
-}
-
-.sidenav-item {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    width: fit-content;
-    transition: color 0.5s ease;
-}
-
-.sidenav-item:hover::before {
-    width: 100%;
-}
-
-.sidenav-item:hover {
-    color: white;
 }
