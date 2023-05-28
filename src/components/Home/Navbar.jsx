@@ -16,12 +16,24 @@ const Navbar = () => {
     return (
       <Grid
         item
-        md={12}
+        sm={12}
         sx={{
           display: "flex",
-          justifyContent: "space-between",
+          gap: {
+            xs: "2rem",
+            sm: "0"
+          },
+          justifyContent: {
+            xs: "center",
+            sm: "space-between"
+          },
           alignItems: "center",
-          marginTop: "4rem",
+          marginTop: {
+            xs: "1rem",
+            sm: "1.5rem",
+            md: "2rem",
+            lg: "4rem"
+          },
           height: "80px",
         }}
       >
@@ -47,7 +59,9 @@ const Navbar = () => {
           />
         </Stack>
         <Box>
-          <Box component="img" src="src/assets/Rm-logo-clear.svg" mt={2.5} />
+          <Box component="img" src="src/assets/Rm-logo-clear.svg" mt={2.5} sx={{
+            display: {xs: "none", md: "block"}
+          }}/>
         </Box>
       </Grid>
     );

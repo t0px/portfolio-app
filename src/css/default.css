@@ -1,6 +1,7 @@
 html {
     scroll-behavior: smooth;
     overflow: hidden;
+    /* overflow-y: auto; */
 }
 
 body {
@@ -10,9 +11,6 @@ body {
     display: flex;
     align-items: center;
     flex-direction: column;
-    background-image: url(src/assets/Bg-Noise.png);
-    background-position: 0px 0px;
-    background-size: 100% 100vh;
 }
 
 * {

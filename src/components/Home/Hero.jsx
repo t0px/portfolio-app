@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 import { Button, Grid, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import { useState } from "react";
 
 const PrimaryButton = styled(Button)({
   backgroundColor: "transparent",
@@ -41,50 +42,66 @@ const SecondaryButton = styled(Button)({
 });
 
 const Hero = () => {
-    return (
-      <Grid item md={12} mt={15} component="section">
-        <Box>
-          <Typography
-            variant="h1"
-            sx={{
-              fontWeight: 400,
-              color: "#FFCA7A",
-              fontSize: 60,
-              maxWidth: "40%",
-              letterSpacing: 2.5,
-              mb: 3,
-            }}
-          >
-            Hi, my name is <strong>Roland Meir.</strong>
-          </Typography>
-          <Typography
-            variant="h2"
-            sx={{
-              fontWeight: 400,
-              color: "#E0E0E0",
-              fontSize: 30,
-              fontFamily: "Poppins",
-              mb: 5,
-            }}
-          >
-            I am a <strong>Frontend</strong> Web Developer.
-          </Typography>
-        </Box>
-        <Box>
-          <PrimaryButton variant="contained" sx={{ marginRight: 2.5 }} component="a" href="#contact">
-            Hire Me
-          </PrimaryButton>
-          <SecondaryButton
-            variant="outlined"
-            endIcon={<ArrowForwardIcon sx={{ transition: "0.3s ease" }} />}
-            component="a"
-            href="#projects"
-          >
-            See My Works
-          </SecondaryButton>
-        </Box>
-      </Grid>
-    );
-}
- 
+  return (
+    <Grid item xs={12} pt={15} component="section" sx={{ display: {xs: "flex", md: "initial"}, flexDirection: "column", textAlign: {xs: "center", sm: "start"}}}>
+      <Box mt={15}>
+        <Typography
+          variant="h1"
+          sx={{
+            fontWeight: 400,
+            color: "#FFCA7A",
+            fontSize: {
+              xs: 30,
+              md: 40,
+              lg: 60,
+            },
+            maxWidth: {
+              sm: "60%",
+              md: "60%",
+            },
+            letterSpacing: 2.5,
+            mb: 3,
+          }}
+        >
+          Hi, my name is <strong>Roland Meir.</strong>
+        </Typography>
+        <Typography
+          variant="h2"
+          sx={{
+            fontWeight: 400,
+            color: "#E0E0E0",
+            fontSize: {
+              xs: 20,
+              md: 25,
+              lg: 30,
+            },
+            fontFamily: "Poppins",
+            mb: 5,
+          }}
+        >
+          I am a <strong>Frontend</strong> Web Developer.
+        </Typography>
+      </Box>
+      <Box>
+        <PrimaryButton
+          variant="contained"
+          sx={{ marginRight: {lg: 2.5}, marginBottom: {xs: "1.5rem", xsc: 0} }}
+          component="a"
+          href="#contact"
+        >
+          Hire Me
+        </PrimaryButton>
+        <SecondaryButton
+          variant="outlined"
+          endIcon={<ArrowForwardIcon sx={{ transition: "0.3s ease" }} />}
+          component="a"
+          href="#projects"
+        >
+          See My Works
+        </SecondaryButton>
+      </Box>
+    </Grid>
+  );
+};
+
 export default Hero;

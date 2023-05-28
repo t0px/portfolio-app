@@ -1,0 +1,8 @@
+.mobile-menu {
+    transform: translateY(-100%);
+    transition: all 0.5s ease-out;
+}
+
+.active {
+    transform: translateY(0);
+}
