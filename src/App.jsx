@@ -41,66 +41,37 @@ const OverlayBG = styled(Box)({
 });
 
 function App() {
-  const handleMoveCursor = (e) => {
-    setCursorPlacing({
-      clientX: e.clientX,
-      clientY: e.clientY,
-    });
-  };
-
-  const [cursorPlacing, setCursorPlacing] = useState({
-    clientX: 0,
-    clientY: 0,
-  });
 
   return (
     // Overriding default font with theme
-    <div onMouseMove={(e) => handleMoveCursor(e)}>
-      <ThemeProvider theme={theme}>
-        <Box
-          component="div"
-          sx={{
-            width: 100,
-            height: 100,
-            position: "fixed",
-            zIndex: "100000",
-            background: "rgba(255, 255, 255, 0.15)",
-            transform: `translate(${cursorPlacing.clientX - 50}px, ${
-              cursorPlacing.clientY - 50
-            }px)`,
-            borderRadius: "50%",
-            pointerEvents: "none",
-            filter: "blur(50px)",
-          }}
-        ></Box>
-        <Sidebar />
-        <PageWrapper bgcolor="#1C1A1B">
-          <PageGrid container id="home" sx={{ height: "100vh" }}>
-            <Home />
-          </PageGrid>
-        </PageWrapper>
-        <PageWrapper bgcolor="#252324">
-          <PageGrid container id="about" sx={{ height: "100vh" }}>
-            <About />
-          </PageGrid>
-        </PageWrapper>
-        <PageWrapper bgcolor="#2e2c2d">
-          <PageGrid container id="knowledge" sx={{ height: "100vh" }}>
-            <Knowledge />
-          </PageGrid>
-        </PageWrapper>
-        <PageWrapper bgcolor="#373637">
-          <PageGrid container id="projects" sx={{ height: "100vh" }}>
-            <Projects />
-          </PageGrid>
-        </PageWrapper>
-        <PageWrapper bgcolor="#414040">
-          <PageGrid container id="contact" sx={{ height: "100vh" }}>
-            <Contact />
-          </PageGrid>
-        </PageWrapper>
-      </ThemeProvider>
-    </div>
+    <ThemeProvider theme={theme}>
+      <Sidebar />
+      <PageWrapper bgcolor="#1C1A1B">
+        <PageGrid container id="home" sx={{ height: "100vh" }}>
+          <Home />
+        </PageGrid>
+      </PageWrapper>
+      <PageWrapper bgcolor="#2B1763">
+        <PageGrid container id="about" sx={{ height: "100vh" }}>
+          <About />
+        </PageGrid>
+      </PageWrapper>
+      <PageWrapper bgcolor="#fff">
+        <PageGrid container id="knowledge" sx={{ height: "100vh" }}>
+          <Knowledge />
+        </PageGrid>
+      </PageWrapper>
+      <PageWrapper bgcolor="#373637">
+        <PageGrid container id="projects" sx={{ height: "100vh" }}>
+          <Projects />
+        </PageGrid>
+      </PageWrapper>
+      <PageWrapper bgcolor="#414040">
+        <PageGrid container id="contact" sx={{ height: "100vh" }}>
+          <Contact />
+        </PageGrid>
+      </PageWrapper>
+    </ThemeProvider>
   );
 }
 

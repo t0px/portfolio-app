@@ -3,7 +3,7 @@ import { Box, Stack } from "@mui/system";
 import '/src/css/sidebar.css'
 import styled from "@emotion/styled";
 import MobileMenu from "./MobileMenu";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
 
 const navItems = [

@@ -1,12 +1,19 @@
 import { Typography } from "@mui/material";
 import { Box, Stack } from "@mui/system";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import '../css/mobilemenu.css';
 
 const MobileMenu = ({ navItems, isOpen, setIsOpen }) => {
 
+    const menuRef = useRef();
+
+    useEffect(() => {
+        isOpen && menuRef.current.focus();
+    }, [setIsOpen, isOpen])
+
   return (
     <Box
+      ref={menuRef}
       className={`mobile-menu ${isOpen ? "active" : ""}`}
       position="fixed"
       sx={{
@@ -16,14 +23,21 @@ const MobileMenu = ({ navItems, isOpen, setIsOpen }) => {
         zIndex: 1000,
         opacity: `${isOpen ? "1" : "0"}`,
         pointerEvents: `${isOpen ? "all" : "none"}`,
+        boxShadow: "0 5px 5px 0 black",
       }}
-      onBlur={() => setIsOpen(false)}
+      // TODO: FIX THIS
     >
       <Stack
-        bgcolor="#fff"
+        bgcolor="rgb(171, 159, 133, 0.95)"
         color="black"
         direction="column"
-        sx={{ display: "flex", alignItems: "center", gap: 4, p: 4 }}
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          textAlign: "center",
+          textTransform: "uppercase",
+          letterSpacing: 3
+        }}
       >
         {navItems.map((item, index) => (
           <Typography
@@ -35,6 +49,9 @@ const MobileMenu = ({ navItems, isOpen, setIsOpen }) => {
               textDecoration: "none",
               color: "inherit",
               fontFamily: "Poppins",
+              width: "100%",
+              p: 2,
+              border: "1px solid #AAA391",
             }}
           >
             {item.name}
