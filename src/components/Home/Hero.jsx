@@ -43,8 +43,8 @@ const SecondaryButton = styled(Button)({
 
 const Hero = () => {
   return (
-    <Grid item xs={12} pt={15} component="section" sx={{ display: {xs: "flex", md: "initial"}, flexDirection: "column", textAlign: {xs: "center", sm: "start"}}}>
-      <Box mt={15}>
+    <Grid item xs={12} mt={15} component="section" sx={{flexDirection: "column", textAlign: {xs: "center", sm: "start"}}}>
+      <Box>
         <Typography
           variant="h1"
           sx={{
@@ -58,6 +58,7 @@ const Hero = () => {
             maxWidth: {
               sm: "60%",
               md: "60%",
+              lg: "40%",
             },
             letterSpacing: 2.5,
             mb: 3,

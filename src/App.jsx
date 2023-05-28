@@ -14,7 +14,9 @@ import Sidebar from "./components/Sidebar";
 const PageWrapper = styled(Box)({
     width: "100vw",
     display: "flex",
-    justifyContent: "center"
+    justifyContent: "center",
+    overflow: "hidden",
+    position: "relative",
 })
 
 const PageGrid = styled(Grid)({
