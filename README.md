@@ -10,4 +10,4 @@
 > The primary objective for this project was to expand my knowledge and skillset on the above technologies.<br>
 
 ## Future..?
-> As time progresses, this portfolio will change and improve in its code and techonlogies.
+> As time progresses, this portfolio will change and improve in its code and technologies.
