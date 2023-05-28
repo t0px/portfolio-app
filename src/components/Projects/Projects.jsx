@@ -1,7 +1,7 @@
 import { Typography } from "@mui/material";
 import { Box, Container } from "@mui/system";
 
-const Section1 = () => {
+const Projects = () => {
     return (
       <Container disableGutters component="section">
         <Typography
@@ -14,10 +14,10 @@ const Section1 = () => {
             mb: 5,
           }}
         >
-          I am a <strong>Frontend</strong> Web Developer.
+          Projects Section
         </Typography>
       </Container>
     );
 }
  
-export default Section1;
+export default Projects;

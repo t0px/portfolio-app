@@ -71,12 +71,14 @@ const Hero = () => {
           </Typography>
         </Box>
         <Box>
-          <PrimaryButton variant="contained" sx={{ marginRight: 2.5 }}>
+          <PrimaryButton variant="contained" sx={{ marginRight: 2.5 }} component="a" href="#contact">
             Hire Me
           </PrimaryButton>
           <SecondaryButton
             variant="outlined"
             endIcon={<ArrowForwardIcon sx={{ transition: "0.3s ease" }} />}
+            component="a"
+            href="#projects"
           >
             See My Works
           </SecondaryButton>
