@@ -1,7 +1,7 @@
 html {
     scroll-behavior: smooth;
     overflow-x: hidden;
-    /* overflow: hidden; */
+    overflow: hidden;
 }
 
 ::-webkit-scrollbar {
@@ -25,6 +25,7 @@ html {
 }
 
 body {
+    background-color: #1C1A1B;
     margin: 0;
     padding: 0;
     display: flex;
