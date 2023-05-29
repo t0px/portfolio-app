@@ -43,7 +43,7 @@ const pageItems = [
     ref: "projects",
     bgcolor: null,
     page: <Projects />,
-    size: 100,
+    size: 150,
   },
   {
     id: 4,

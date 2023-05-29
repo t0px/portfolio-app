@@ -29,7 +29,7 @@ const AboutSection = () => {
       <MainText
         title={
           <span>
-            <strong>Why I</strong> Do <strong>This</strong>
+            <strong>That's</strong> Me
           </span>
         }
       />
@@ -40,7 +40,8 @@ const AboutSection = () => {
         variant="h2"
         sx={{
           fontSize: {
-            xs: 16,
+            xs: 14,
+            sm: 16,
             sm: 18,
           },
           color: "#E0E0E0",

@@ -2,7 +2,7 @@ import { Button, Grid, Typography } from "@mui/material";
 import { Box, Stack } from "@mui/system";
 import MainText from "../MainText";
 import Buttons from "../Buttons";
-import Icons from "./Icons";
+import Icons from "../Knowledge/Icons";
 
 const Hero = () => {
   return (

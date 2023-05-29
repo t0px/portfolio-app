@@ -1,21 +1,11 @@
 import { Typography } from "@mui/material";
-import { Container } from "@mui/system";
+import { Box, Container } from "@mui/system";
+import KnowledgeSection from "./KnowledgeSection";
 
 const Knowledge = () => {
     return (
       <Container disableGutters component="section">
-        <Typography
-          variant="h2"
-          sx={{
-            fontWeight: 400,
-            color: "#E0E0E0",
-            fontSize: 30,
-            fontFamily: "Poppins",
-            mb: 5,
-          }}
-        >
-          Knowledge Section
-        </Typography>
+        <KnowledgeSection />
       </Container>
     );
 }

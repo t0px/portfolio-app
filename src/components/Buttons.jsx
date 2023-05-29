@@ -51,7 +51,7 @@ const Buttons = () => {
         href="#contact"
         className="primary-btn"
       >
-        Let's Work
+        Let's Talk
       </PrimaryButton>
       <SecondaryButton
         variant="outlined"
