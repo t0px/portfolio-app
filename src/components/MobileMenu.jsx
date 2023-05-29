@@ -28,7 +28,7 @@ const MobileMenu = ({ navItems, isOpen, setIsOpen }) => {
       // TODO: FIX THIS
     >
       <Stack
-        bgcolor="rgb(171, 159, 133, 0.95)"
+        bgcolor="#fff"
         color="black"
         direction="column"
         sx={{
@@ -51,7 +51,7 @@ const MobileMenu = ({ navItems, isOpen, setIsOpen }) => {
               fontFamily: "Poppins",
               width: "100%",
               p: 2,
-              border: "1px solid #AAA391",
+              border: "1px solid lightgray",
             }}
           >
             {item.name}

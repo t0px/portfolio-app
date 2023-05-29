@@ -4,15 +4,25 @@ import { Box } from "@mui/system";
 
 const AboutSection = () => {
   return (
-    <Grid item xs={12} mt={25} sx={{ position: "relative" }}>
+    <Grid item xs={12} sx={{ position: "relative", mt: {xs: 15, lg: 18, xl: 25}, textAlign: {xs: "center", sm: "start"} }}>
       <Box
         component="img"
         src="src/assets/Shapes/Circle.png"
         sx={{
           position: "absolute",
-          top: -120,
-          left: -120,
-          width: 300,
+          top: {
+            xs: -60,
+            lg: -120,
+          },
+          left: {
+            xs: -60,
+            lg: -120,
+          },
+          width: {
+            xs: 175,
+            md: 200,
+            lg: 300,
+          }
         }}
       />
       <MainText
@@ -28,9 +38,15 @@ const AboutSection = () => {
       <Typography
         variant="h2"
         sx={{
-          fontSize: 18,
+          fontSize: {
+            xs: 16,
+            sm: 18,
+          },
           color: "#E0E0E0",
-          maxWidth: "55%",
+          maxWidth: {
+            lg: "55%",
+            xs: "100%"
+          },
           letterSpacing: 0.5,
           lineHeight: 1.5,
         }}

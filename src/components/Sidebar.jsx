@@ -29,19 +29,16 @@ const navItems = [
   },
 ];
 
-
-
-
 const Sidebar = () => {
-    const handleMenuOpen = () => {
-      setIsOpen((prevIsOpen) => !prevIsOpen);
-    };
+  const handleMenuOpen = () => {
+    setIsOpen((prevIsOpen) => !prevIsOpen);
+  };
 
-    const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <>
-      <MobileMenu navItems={navItems} isOpen={isOpen} setIsOpen={setIsOpen}/>
+      <MobileMenu navItems={navItems} isOpen={isOpen} setIsOpen={setIsOpen} />
       <MenuIcon
         sx={{
           display: {
@@ -55,7 +52,7 @@ const Sidebar = () => {
             right: 10,
             fontSize: 35,
           },
-          zIndex: 10000
+          zIndex: 10000,
         }}
         onClick={handleMenuOpen}
       ></MenuIcon>
