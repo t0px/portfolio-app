@@ -9,22 +9,21 @@ const PageGrid = styled(Grid)({
 });
 
 const PageWrapper = ({ item }) => {
-    console.log(item)
-    return (
-      <Box
-        sx={{
-          width: "100vw",
-          display: "flex",
-          justifyContent: "center",
-          overflow: "hidden",
-          position: "relative",
-        }}
-      >
-        <PageGrid container id={item.ref} sx={{ height: "100vh" }}>
-          {item.page}
-        </PageGrid>
-      </Box>
-    );
-}
- 
+  return (
+    <Box
+      sx={{
+        width: "100vw",
+        display: "flex",
+        justifyContent: "center",
+        overflow: "hidden",
+        position: "relative",
+      }}
+    >
+      <PageGrid container id={item.ref} sx={{ height: `${item.size}vh` }}>
+        {item.page}
+      </PageGrid>
+    </Box>
+  );
+};
+
 export default PageWrapper;

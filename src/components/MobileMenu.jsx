@@ -3,7 +3,7 @@ import { Box, Stack } from "@mui/system";
 import { useEffect, useRef } from "react";
 import '../css/mobilemenu.css';
 
-const MobileMenu = ({ navItems, isOpen, setIsOpen }) => {
+const MobileMenu = ({ navItems, isOpen, setIsOpen, currentIndex, setCurrentIndex }) => {
 
     const menuRef = useRef();
 
@@ -36,7 +36,7 @@ const MobileMenu = ({ navItems, isOpen, setIsOpen }) => {
           alignItems: "center",
           textAlign: "center",
           textTransform: "uppercase",
-          letterSpacing: 3
+          letterSpacing: 3,
         }}
       >
         {navItems.map((item, index) => (
@@ -53,6 +53,7 @@ const MobileMenu = ({ navItems, isOpen, setIsOpen }) => {
               p: 2,
               border: "1px solid lightgray",
             }}
+            onClick={() => setCurrentIndex(navItems.indexOf(item))}
           >
             {item.name}
           </Typography>

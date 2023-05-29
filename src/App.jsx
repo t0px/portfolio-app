@@ -2,7 +2,6 @@ import { Grid } from "@mui/material";
 import { theme } from "../theme";
 import { Box, ThemeProvider } from "@mui/system";
 import "./css/default.css";
-import styled from "@emotion/styled";
 import Home from "./components/Home/Home";
 import Knowledge from "./components/Knowledge/Knowledge";
 import Projects from "./components/Projects/Projects";
@@ -11,43 +10,69 @@ import Contact from "./components/Contact/Contact";
 import Sidebar from "./components/Sidebar";
 import { Parallax, ParallaxProvider } from "react-scroll-parallax";
 import PageWrapper from "./components/PageWrapper";
+import Logo from "./components/Logo";
+import ArrowNav from "./components/ArrowNav";
+import { useState, useRef } from "react";
 
 // PageItems [{}...]
 
 const pageItems = [
-    {
-        ref: "home",
-        bgcolor: null,
-        page: <Home />
-    },
-    {
-        ref: "about",
-        bgcolor: null,
-        page: <About />
-    },
-    {
-        ref: "knowledge",
-        bgcolor: <Knowledge />
-    },
-    {
-        ref: "projects",
-        bgcolor: <Projects />
-    },
-    {
-        ref: "contact",
-        bgcolor: <Contact />
-    },
+  {
+    id: 0,
+    ref: "home",
+    bgcolor: null,
+    page: <Home />,
+    size: 100,
+  },
+  {
+    id: 1,
+    ref: "about",
+    bgcolor: null,
+    page: <About />,
+    size: 100,
+  },
+  {
+    id: 2,
+    ref: "knowledge",
+    bgcolor: null,
+    page: <Knowledge />,
+    size: 100,
+  },
+  {
+    id: 3,
+    ref: "projects",
+    bgcolor: null,
+    page: <Projects />,
+    size: 100,
+  },
+  {
+    id: 4,
+    ref: "contact",
+    bgcolor: null,
+    page: <Contact />,
+    size: 100,
+  },
 ];
 
 function App() {
+  const [currentPage, setCurrentPage] = useState([pageItems[0]]);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   return (
     // Overriding default font with theme
     <ThemeProvider theme={theme}>
-      <Sidebar />
-        {pageItems.map((item, index) => (
-            <PageWrapper item={item} key={index}/>
-        ))}
+      <Logo />
+      <ArrowNav
+        currentIndex={currentIndex}
+        setCurrentIndex={setCurrentIndex}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+        pageItems={pageItems}
+      />
+      <Sidebar currentIndex={currentIndex} setCurrentIndex={setCurrentIndex} />
+      {pageItems.map((item, index) => (
+        <PageWrapper item={item} key={index} />
+      ))}
     </ThemeProvider>
   );
 }

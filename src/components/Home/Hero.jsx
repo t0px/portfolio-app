@@ -17,7 +17,12 @@ const Hero = () => {
       }}
     >
       <Box position="relative">
-        <Box component="img" src="src/assets/Dots.png" position="absolute" sx={{top: 50, left: 250}} />
+        <Box
+          component="img"
+          src="src/assets/Dots.png"
+          position="absolute"
+          sx={{ top: 50, left: 250, pointerEvents: "none", display: {xs: "none", xl: "inherit"} }}
+        />
         <MainText
           title={
             <span>
@@ -44,7 +49,7 @@ const Hero = () => {
       </Box>
       <Buttons />
       {
-      // TODO: Change icon position
+        // TODO: Change icon position
       }
       {/* <Icons /> */}
     </Grid>

@@ -1,5 +1,5 @@
 import { Typography } from "@mui/material";
-import { Box, Container } from "@mui/system";
+import { Container } from "@mui/system";
 
 const Knowledge = () => {
     return (

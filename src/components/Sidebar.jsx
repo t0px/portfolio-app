@@ -1,6 +1,6 @@
 import { Grid, Typography } from "@mui/material";
 import { Box, Stack } from "@mui/system";
-import '/src/css/sidebar.css'
+import "/src/css/sidebar.css";
 import styled from "@emotion/styled";
 import MobileMenu from "./MobileMenu";
 import { useEffect, useState, useRef } from "react";
@@ -29,7 +29,7 @@ const navItems = [
   },
 ];
 
-const Sidebar = () => {
+const Sidebar = ({ currentIndex, setCurrentIndex }) => {
   const handleMenuOpen = () => {
     setIsOpen((prevIsOpen) => !prevIsOpen);
   };
@@ -38,7 +38,13 @@ const Sidebar = () => {
 
   return (
     <>
-      <MobileMenu navItems={navItems} isOpen={isOpen} setIsOpen={setIsOpen} />
+      <MobileMenu
+        navItems={navItems}
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+        currentIndex={currentIndex}
+        setCurrentIndex={setCurrentIndex}
+      />
       <MenuIcon
         sx={{
           display: {
@@ -102,6 +108,7 @@ const Sidebar = () => {
               href={item.path}
               sx={{ textDecoration: "none", color: "inherit", p: 1.5 }}
               className="sidenav-item"
+              onClick={() => setCurrentIndex(navItems.indexOf(item))}
             >
               {item.name}
             </Typography>

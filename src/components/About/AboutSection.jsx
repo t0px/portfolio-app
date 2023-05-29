@@ -22,7 +22,8 @@ const AboutSection = () => {
             xs: 175,
             md: 200,
             lg: 300,
-          }
+          },
+          pointerEvents: "none"
         }}
       />
       <MainText
