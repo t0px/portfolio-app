@@ -25,8 +25,8 @@ const ProjectsSection = ({ projects }) => {
         src="src/assets/Shapes/Volts.png"
         sx={{
           position: "absolute",
-          top: 0,
-          right: { xs: -100, lg: 300 },
+          top: -100,
+          left: { xs: -100, lg: -360 },
           pointerEvents: "none",
         }}
       />
@@ -44,9 +44,9 @@ const ProjectsSection = ({ projects }) => {
         variant="h2"
         sx={{
           fontSize: {
-            xs: 14,
-            sm: 16,
-            md: 18,
+            xs: 12,
+            sm: 14,
+            xl: 18,
           },
           color: "#E0E0E0",
           maxWidth: {
@@ -55,7 +55,7 @@ const ProjectsSection = ({ projects }) => {
           },
           letterSpacing: 0.5,
           lineHeight: 1.5,
-          mb: 5,
+          mb: {xs: 2, md: 5},
         }}
       >
         This section features two distinct types of work:{" "}
@@ -65,19 +65,21 @@ const ProjectsSection = ({ projects }) => {
         <br /> <br /> <strong>Below</strong>, you can scroll through the
         projects and see what they involve and how they were created.
       </Typography>
-      <Grid item xs={12} lg={8} sx={{ height: 285 }}>
+      <Grid item xs={12} lg={10} xl={8} sx={{ height: { xs: 385, md: 285}, }}>
         <Stack
-          direction="row"
-          gap={3}
+          gap={{md: 3}}
           sx={{
+            flexDirection: {xs: "column", md: "row"},
             height: "100%",
             alignItems: "center",
             position: "relative",
+            marginTop: {xs: 0, sm: 10, md: 0},
           }}
         >
           <Preview
             currentPreview={currentPreview}
             setCurrentPreview={setCurrentPreview}
+            projects={projects}
           />
         </Stack>
       </Grid>
