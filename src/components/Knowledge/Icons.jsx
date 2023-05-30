@@ -39,8 +39,8 @@ const icons = [
 
 const Icons = () => {
   return (
-    <Box sx={{ overflowX: "scroll" }}>
-      <Stack direction="row" gap={2} sx={{ position: "absolute" }}>
+    <Box sx={{ overflowX: {xs: "scroll", } }}>
+      <Stack direction="row" gap={2}>
         {icons.map((icon, index) => (
           <Tooltip
             key={index}

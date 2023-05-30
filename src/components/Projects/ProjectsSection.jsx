@@ -2,8 +2,14 @@ import { Button, Divider, Grid, Typography } from "@mui/material";
 import MainText from "../MainText";
 import styled from "@emotion/styled";
 import { Box, Stack } from "@mui/system";
+import Preview from "./Preview";
+import { useState } from "react";
 
-const ProjectsSection = () => {
+
+const ProjectsSection = ({ projects }) => {
+
+    const [currentPreview, setCurrentPreview] = useState(projects[0]);
+
   return (
     <Grid
       item
@@ -16,7 +22,7 @@ const ProjectsSection = () => {
     >
       <Box
         component="img"
-        src="src/assets/Shapes/Squares.png"
+        src="src/assets/Shapes/Volts.png"
         sx={{
           position: "absolute",
           top: 0,
@@ -59,9 +65,22 @@ const ProjectsSection = () => {
         <br /> <br /> <strong>Below</strong>, you can scroll through the
         projects and see what they involve and how they were created.
       </Typography>
-
-      <Box sx={{ mt: 8 }} position="relative">
-      </Box>
+      <Grid item xs={12} lg={8} sx={{ height: 285 }}>
+        <Stack
+          direction="row"
+          gap={3}
+          sx={{
+            height: "100%",
+            alignItems: "center",
+            position: "relative",
+          }}
+        >
+          <Preview
+            currentPreview={currentPreview}
+            setCurrentPreview={setCurrentPreview}
+          />
+        </Stack>
+      </Grid>
     </Grid>
   );
 };
