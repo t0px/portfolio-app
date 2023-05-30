@@ -22,6 +22,11 @@ html {
   background-color: #6d552f;
 }
 
+::selection {
+    color: black;
+    background: #BFB7A4;
+}
+
 body {
     overflow: hidden;
     ::-webkit-scrollbar { display: none; }

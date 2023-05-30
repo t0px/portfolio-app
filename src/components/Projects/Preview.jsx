@@ -9,11 +9,15 @@ const Preview = ({ currentPreview, setCurrentPreview, projects }) => {
   //TODO: create animation between projects
   //TODO: maybe create modal that displays "read more" 
   //for more info on each project
-  const Navigator = styled(Box)({
-    position: "absolute",
-    right: "100%",
-    marginRight: { md: 20, lg: 40 },
-  });
+const Navigator = styled(Box)(({ theme }) => ({
+  position: "absolute",
+  right: "100%",
+  marginRight: 50,
+  [theme.breakpoints.down("md")]: {
+    position: "block",
+    marginRight: 0,
+  },
+}));
 
   const [currentPreviewIndex, setCurrentPreviewIndex] = useState(0);
 
@@ -40,16 +44,26 @@ const Preview = ({ currentPreview, setCurrentPreview, projects }) => {
   return (
     <>
       <Navigator>
-        <Stack direction="column" gap={3}>
+        <Stack direction="column" gap={{ xs: 1.5, lg: 3 }}>
           <IconButton
             color="primary"
-            sx={{ bgcolor: "white", "&:hover": { bgcolor: "white" } }}
+            sx={{
+              bgcolor: "white",
+              "&:hover": { bgcolor: "white" },
+              width: { xs: 30, md: 35, lg: 40 },
+              height: { xs: 30, md: 35, lg: 40 },
+            }}
             onClick={(e) => handlePreviewChange("prev")}
           >
             <KeyboardArrowUpIcon />
           </IconButton>
           <IconButton
-            sx={{ bgcolor: "white", "&:hover": { bgcolor: "white" } }}
+            sx={{
+              bgcolor: "white",
+              "&:hover": { bgcolor: "white" },
+              width: { xs: 30, md: 35, lg: 40 },
+              height: { xs: 30, md: 35, lg: 40 },
+            }}
             onClick={() => handlePreviewChange("next")}
           >
             <KeyboardArrowDownIcon color="primary" />
@@ -115,7 +129,7 @@ const Preview = ({ currentPreview, setCurrentPreview, projects }) => {
           }
           {currentPreview.date}
         </Typography>
-        <Divider sx={{ bgcolor: "white" }} />
+        <Divider sx={{ bgcolor: "gray" }} />
         <Typography
           variant="h6"
           mt={2}
@@ -132,7 +146,7 @@ const Preview = ({ currentPreview, setCurrentPreview, projects }) => {
         </Typography>
         <Stack
           direction="row"
-          gap={{xs: 1, md: 3}}
+          gap={{ xs: 1, md: 3 }}
           position="absolute"
           sx={{
             fontSize: 14,

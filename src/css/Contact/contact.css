@@ -1,0 +1,24 @@
+.send-btn {
+    overflow: hidden;
+    position: relative;
+    z-index: 10;
+}
+
+.send-btn::before {
+    content: '';
+    position: absolute;
+    background: #92713C;
+    width: 100%;
+    height: 100%;
+    transition: all 0.5s;
+    z-index: -1;
+}
+
+.send-btn:hover {
+    color: #92713C;
+    background: transparent !important;
+}
+
+.send-btn:hover::before {
+    width: 0;
+}

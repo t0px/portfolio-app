@@ -29,7 +29,7 @@ const AboutSection = () => {
       <MainText
         title={
           <span>
-            <strong>That's</strong> Me
+            <strong>Who I</strong> Am
           </span>
         }
       />

@@ -25,7 +25,7 @@ const projects = [
     thumbnail: "src/assets/thumbnails/screen3.png",
     date: "December 2021",
     desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sollicitudin neque lorem, gravida porta magna efficitur vitae. Donec et justo semper, ullamcorper lorem id, suscipit lacus.",
-    tech: ["html", "css-3", "js", "react", "figma"],
+    tech: ["html", "css-3", "js", "react", "bootstrap"],
   },
   {
     id: 3,
@@ -33,7 +33,7 @@ const projects = [
     thumbnail: "src/assets/thumbnails/screen4.png",
     date: "May 2023",
     desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sollicitudin neque lorem, gravida porta magna efficitur vitae. Donec et justo semper, ullamcorper lorem id, suscipit lacus.",
-    tech: ["html", "css-3", "js", "react", "figma"],
+    tech: ["html", "css-3", "react"],
   },
 ];
 
