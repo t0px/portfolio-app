@@ -148,9 +148,8 @@ const ContactSection = () => {
             resize: "none",
             transition: "all 0.3s ease",
             "&:focus": {
-              outline: "none",
+              border: "1px solid #fff",
               borderBottom: "1px solid #fff",
-              border: "none",
             },
           }}
         ></Box>

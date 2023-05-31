@@ -7,37 +7,61 @@ import { useEffect, useState } from "react";
 
 const Preview = ({ currentPreview, setCurrentPreview, projects }) => {
   //TODO: create animation between projects
-  //TODO: maybe create modal that displays "read more" 
+  //TODO: maybe create modal that displays "read more"
   //for more info on each project
-const Navigator = styled(Box)(({ theme }) => ({
-  position: "absolute",
-  right: "100%",
-  marginRight: 50,
-  [theme.breakpoints.down("md")]: {
-    position: "block",
-    marginRight: 0,
-  },
-}));
+  const Navigator = styled(Box)(({ theme }) => ({
+    position: "absolute",
+    right: "100%",
+    marginRight: 50,
+    [theme.breakpoints.down("md")]: {
+      position: "block",
+      marginRight: 0,
+    },
+  }));
 
   const [currentPreviewIndex, setCurrentPreviewIndex] = useState(0);
+
+// update states on change since they are janky
+useEffect(() => {
+  const updatePreview = () => {
+    const preview = projects.find(
+      (preview) => preview.id === currentPreviewIndex
+    );
+    setCurrentPreview(preview);
+  };
+
+  updatePreview();
+}, [currentPreviewIndex, projects]);
 
   //TODO: add stopping mechanism
   const handlePreviewChange = (actionType) => {
     switch (actionType) {
-      case "next":
-        const nextPreview = projects.find(
-          (preview) => preview.id === currentPreviewIndex + 1
-        );
-        setCurrentPreview(nextPreview);
-        setCurrentPreviewIndex((prevIndex) => prevIndex + 1);
-        break;
-
       case "prev":
+        if (currentPreviewIndex === 0) {
+          setCurrentPreviewIndex(projects.length - 1);
+        } else {
+          setCurrentPreviewIndex((prevIndex) => prevIndex - 1);
+        }
         const prevPreview = projects.find(
-          (preview) => preview.id === currentPreviewIndex - 1
+          (preview) => preview.id === currentPreviewIndex
         );
         setCurrentPreview(prevPreview);
-        setCurrentPreviewIndex((prevIndex) => prevIndex - 1);
+        break;
+
+      case "next":
+        if (currentPreviewIndex === projects.length - 1) {
+          setCurrentPreviewIndex(0);
+        } else {
+          setCurrentPreviewIndex((prevIndex) => prevIndex + 1);
+        }
+        const nextPreviewIndex =
+          currentPreviewIndex === projects.length - 1
+            ? 0
+            : currentPreviewIndex + 1;
+        const nextPreview = projects.find(
+          (preview) => preview.id === nextPreviewIndex
+        );
+        setCurrentPreview(nextPreview);
         break;
     }
   };
