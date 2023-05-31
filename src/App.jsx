@@ -12,9 +12,10 @@ import { Parallax, ParallaxProvider } from "react-scroll-parallax";
 import PageWrapper from "./components/PageWrapper";
 import Logo from "./components/Logo";
 import ArrowNav from "./components/ArrowNav";
-import { useState, useRef } from "react";
-
-// PageItems [{}...]
+import { useState } from "react";
+import { loadFull } from "tsparticles";
+import { gsap, Power3 } from "gsap";
+import Stars from "./components/Stars";
 
 const pageItems = [
   {
@@ -54,26 +55,40 @@ const pageItems = [
   },
 ];
 
+
+
 function App() {
+  //GSAP
+  const tl = new gsap.timeline();
+  const ease = Power3.easeOut();
+
   const [currentPage, setCurrentPage] = useState([pageItems[0]]);
   const [currentIndex, setCurrentIndex] = useState(0);
 
   return (
     // Overriding default font with theme
-    <ThemeProvider theme={theme}>
-      <Logo />
-      <ArrowNav
-        currentIndex={currentIndex}
-        setCurrentIndex={setCurrentIndex}
-        currentPage={currentPage}
-        setCurrentPage={setCurrentPage}
-        pageItems={pageItems}
-      />
-      <Sidebar currentIndex={currentIndex} setCurrentIndex={setCurrentIndex} />
-      {pageItems.map((item, index) => (
-        <PageWrapper item={item} key={index} />
-      ))}
-    </ThemeProvider>
+      <ThemeProvider theme={theme}>
+        <Stars />
+        <Logo />
+        <ArrowNav
+          timeline={tl}
+          ease={ease}
+          currentIndex={currentIndex}
+          setCurrentIndex={setCurrentIndex}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+          pageItems={pageItems}
+        />
+        <Sidebar
+          currentIndex={currentIndex}
+          setCurrentIndex={setCurrentIndex}
+          timeline={tl}
+          ease={ease}
+        />
+        {pageItems.map((item, index) => (
+          <PageWrapper item={item} key={index} />
+        ))}
+      </ThemeProvider>
   );
 }
 

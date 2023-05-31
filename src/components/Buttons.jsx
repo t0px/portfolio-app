@@ -38,9 +38,9 @@ const SecondaryButton = styled(Button)({
   },
 });
 
-const Buttons = () => {
+const Buttons = ({ animationRef }) => {
   return (
-    <Box>
+    <Box ref={animationRef}>
       <PrimaryButton
         variant="contained"
         sx={{
@@ -59,7 +59,7 @@ const Buttons = () => {
         component="a"
         href="#projects"
       >
-        See My Stuff
+        See My Work
       </SecondaryButton>
     </Box>
   );

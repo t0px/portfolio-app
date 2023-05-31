@@ -1,52 +1,62 @@
 import { Box } from "@mui/system";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import { Button } from "@mui/material";
 //TODO: Make a gamepad, two button up and down instead of this...
 //TODO: fix the mess
 const ArrowNav = ({
+  timeline,
+  ease,
   currentIndex,
   setCurrentIndex,
   currentPage,
   setCurrentPage,
   pageItems,
 }) => {
+  let arrow = useRef(null);
 
-    const [isIndexEnded, setIsIndexEnded] = useState(false);
+  useEffect(() => {
+    timeline.from(arrow, 4,
+      {
+        opacity: 0,
+        y: 2000,
+        ease: ease,
+      });
+  }, []);
+
+  const [isIndexEnded, setIsIndexEnded] = useState(false);
 
   const handleNavigation = (index) => {
     setCurrentPage(pageItems.filter((item) => item.id === index + 1));
     setCurrentIndex((prevIndex) => prevIndex + 1);
-    }
+  };
 
-    //isIndex testing
-    useEffect(() => {
-        if (currentIndex === pageItems[pageItems.length - 1].id) {
-            setIsIndexEnded(true);
-        }
-        else {
-            setIsIndexEnded(false);
-        }
-    }, [currentIndex, currentPage]);
-    
+  //isIndex testing
+  useEffect(() => {
+    if (currentIndex === pageItems[pageItems.length - 1].id) {
+      setIsIndexEnded(true);
+    } else {
+      setIsIndexEnded(false);
+    }
+  }, [currentIndex, currentPage]);
+
   //testing
   useEffect(() => {
-    console.log("CURRENT INDEX:", currentIndex);
-    console.log("CURRENT PAGE:", currentPage);
   }, [currentIndex, setCurrentIndex, currentPage]);
 
-    // function to go to next page on index change
+  // function to go to next page on index change
   useEffect(() => {
     handleMove();
   }, [currentPage, currentIndex]);
 
-    // sends to location of current page ref "link"
+  // sends to location of current page ref "link"
   const handleMove = () => {
     location.href = `#${currentPage[0].ref}`;
   };
 
   return (
     <Box
+      ref={(el) => (arrow = el)}
       sx={{
         left: 0,
         right: 0,
@@ -84,7 +94,7 @@ const ArrowNav = ({
         }}
         onClick={() => handleNavigation(currentIndex)}
       >
-        <ArrowDownwardIcon sx={{ fontSize: 35,  }} />
+        <ArrowDownwardIcon sx={{ fontSize: 35 }} />
       </Button>
     </Box>
   );

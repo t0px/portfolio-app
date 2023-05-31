@@ -8,7 +8,7 @@ const PageGrid = styled(Grid)({
   flexDirection: "column",
 });
 
-const PageWrapper = ({ item }) => {
+const PageWrapper = ({ item, timeline, ease }) => {
   return (
     <Box
       sx={{
@@ -19,7 +19,7 @@ const PageWrapper = ({ item }) => {
         position: "relative",
       }}
     >
-      <PageGrid container id={item.ref} sx={{ height: `${item.size}vh` }}>
+      <PageGrid container id={item.ref} sx={{ height: `${item.size}vh` }} timeline={timeline} ease={ease}>
         {item.page}
       </PageGrid>
     </Box>

@@ -1,8 +1,9 @@
 import { Typography } from "@mui/material";
 
-const MainText = ({ title }) => {
+const MainText = ({ title, animationRef }) => {
     return (
       <Typography
+      ref={animationRef}
         variant="h1"
         sx={{
           fontWeight: 400,

@@ -37,10 +37,10 @@ const icons = [
   },
 ];
 
-const Icons = () => {
+const Icons = ({ animationRef }) => {
   return (
-    <Box sx={{ overflowX: {xs: "scroll", } }}>
-      <Stack direction="row" gap={2}>
+    <Box sx={{ overflowX: { xs: "scroll" } }}>
+      <Stack direction="row" gap={2} ref={animationRef}>
         {icons.map((icon, index) => (
           <Tooltip
             key={index}
@@ -54,13 +54,7 @@ const Icons = () => {
               src={`src/assets/skill-icons/${icon.path}`}
               sx={{
                 height: { xs: 40, sm: 35, md: 40, lg: 45 },
-                transition: "all 0.3s ease",
                 cursor: "pointer",
-                "&:hover": {
-                  lg: {
-                    transform: "scale(1.1) ",
-                  },
-                },
               }}
               alt={icon.name}
               className="skill-icon"

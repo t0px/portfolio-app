@@ -1,10 +1,43 @@
 import { Grid, Typography } from "@mui/material";
 import MainText from "../MainText";
 import { Box } from "@mui/system";
+import { useInView } from "react-intersection-observer";
+import { useEffect, useRef } from "react";
 
-const AboutSection = () => {
+const AboutSection = ({ timeline, ease }) => {
+
+    let h2 = useRef(null);
+    let h1 = useRef(null);
+
+    const [aboutRef, inView] = useInView();
+
+    useEffect(() => {
+        if (inView) {
+        timeline.from(h2.current, 1, {
+        opacity: 0,
+          y: 50,
+          ease: ease,
+        });
+        timeline.from(h1.current, 1, {
+        opacity: 0,
+          y: -25,
+          ease: ease,
+        }, "-=1");
+        }
+
+    }, [inView])
+
   return (
-    <Grid item xs={12} sx={{ position: "relative", mt: {xs: 15, lg: 18, xl: 25}, textAlign: {xs: "center", sm: "start"} }}>
+    <Grid
+      ref={aboutRef}
+      item
+      xs={12}
+      sx={{
+        position: "relative",
+        mt: { xs: 15, lg: 18, xl: 25 },
+        textAlign: { xs: "center", sm: "start" },
+      }}
+    >
       <Box
         component="img"
         src="src/assets/Shapes/Circle.png"
@@ -23,10 +56,11 @@ const AboutSection = () => {
             md: 200,
             lg: 300,
           },
-          pointerEvents: "none"
+          pointerEvents: "none",
         }}
       />
       <MainText
+        animationRef={(el) => (h1.current = el)}
         title={
           <span>
             <strong>Who I</strong> Am
@@ -37,6 +71,7 @@ const AboutSection = () => {
         //TODO: add flowing skeleton cube that users can move and is rotating
       }
       <Typography
+        ref={h2}
         variant="h2"
         sx={{
           fontSize: {
@@ -47,18 +82,18 @@ const AboutSection = () => {
           color: "#E0E0E0",
           maxWidth: {
             lg: "55%",
-            xs: "100%"
+            xs: "100%",
           },
           letterSpacing: 0.5,
           lineHeight: 1.5,
         }}
       >
         I am a <strong>20-year-old</strong> from <strong>Israel</strong> who
-        recently graduated from college. <br />With free time on my hands, I am
-        dedicated to enhancing and expanding my knowledge. When I was 12 years
-        old, I used to code simple games, but I eventually grew bored due to my
-        inability to learn coding online effectively due to language
-        limitations.
+        recently graduated from college. <br />
+        With free time on my hands, I am dedicated to enhancing and expanding my
+        knowledge. When I was 12 years old, I used to code simple games, but I
+        eventually grew bored due to my inability to learn coding online
+        effectively due to language limitations.
         <br />
         <br /> A few months ago, I discovered a new class in college called "Web
         Development," which immediately sparked my interest. Although the

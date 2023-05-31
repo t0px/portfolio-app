@@ -5,6 +5,8 @@ import { Box, Stack } from "@mui/system";
 import Icons from "./Icons";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import { useEffect, useRef } from "react";
+import { useInView } from "react-intersection-observer";
 
 const PrimaryButton = styled(Button)({
   backgroundColor: "transparent",
@@ -22,9 +24,47 @@ const PrimaryButton = styled(Button)({
   },
 });
 
-const KnowledgeSection = () => {
+const KnowledgeSection = ({ timeline, ease }) => {
+  let h2 = useRef(null);
+  let h1 = useRef(null);
+  let icons = useRef(null);
+
+  const [knowledgeRef, inView] = useInView();
+    //TODO: might remove the animations for h1 & h2 they are annoying
+  useEffect(() => {
+    if (inView) {
+      timeline.from(h2.current, 1, {
+        opacity: 0,
+        y: 50,
+        ease: ease,
+      });
+      timeline.from(
+        h1.current,
+        1,
+        {
+          opacity: 0,
+          y: -25,
+          ease: ease,
+        },
+        "-=1"
+      );
+      timeline.from(
+        icons.current.children,
+        0.75,
+        {
+          stagger: {
+            amount: 0.75,
+          },
+          y: 400,
+          ease: ease,
+        },
+        "-=1"
+      );
+    }
+  }, [inView]);
   return (
     <Grid
+      ref={knowledgeRef}
       item
       xs={12}
       sx={{
@@ -39,11 +79,12 @@ const KnowledgeSection = () => {
         sx={{
           position: "absolute",
           top: 0,
-          right: {xs: -100, lg: 300},
+          right: { xs: -100, lg: 300 },
           pointerEvents: "none",
         }}
       />
       <MainText
+        animationRef={(el) => (h1.current = el)}
         title={
           <span>
             My <strong>Skill</strong>set
@@ -54,6 +95,7 @@ const KnowledgeSection = () => {
         //TODO: add flowing skeleton cube that users can move and is rotating
       }
       <Typography
+        ref={h2}
         variant="h2"
         sx={{
           fontSize: {
@@ -109,12 +151,28 @@ const KnowledgeSection = () => {
         >
           Areas of <strong>Expertise</strong>
         </Typography>
-        <Icons />
+        <Icons animationRef={(el) => (icons.current = el)} />
         {
-        //TODO: perhaps switch to animated scroll cue for mobile
+          //TODO: perhaps switch to animated scroll cue for mobile
         }
-        <ChevronLeftIcon sx={{position: "absolute", left: 10, mt: 1, color: "#E0E0E0", display: {xs: "inline", sm: "none"}}}/>
-        <ChevronRightIcon sx={{position: "absolute", right: 10, mt: 1, color: "#E0E0E0", display: {xs: "inline", sm: "none"}}}/>
+        <ChevronLeftIcon
+          sx={{
+            position: "absolute",
+            left: 10,
+            mt: 1,
+            color: "#E0E0E0",
+            display: { xs: "inline", sm: "none" },
+          }}
+        />
+        <ChevronRightIcon
+          sx={{
+            position: "absolute",
+            right: 10,
+            mt: 1,
+            color: "#E0E0E0",
+            display: { xs: "inline", sm: "none" },
+          }}
+        />
       </Box>
     </Grid>
   );

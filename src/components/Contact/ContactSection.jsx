@@ -18,7 +18,6 @@ const SendButton = styled(Button)({
   backgroundColor: "transparent",
   outline: "1px solid #92713C",
   boxShadow: "none",
-  borderRadius: 40,
   marginTop: "1.5rem",
   padding: "0.4rem 1rem",
   color: "white",
@@ -147,6 +146,7 @@ const ContactSection = () => {
             pb: 1.5,
             resize: "none",
             transition: "all 0.3s ease",
+            opacity: 0.85,
             "&:focus": {
               border: "1px solid #fff",
               borderBottom: "1px solid #fff",
@@ -156,7 +156,8 @@ const ContactSection = () => {
         <SendButton
           variant="contained"
           sx={{
-            width: 300,
+            width: { xs: 300, sm: 150 },
+            borderRadius: {xs: 2, sm: 40},
           }}
           component="a"
           href="#contact"

@@ -1,17 +1,37 @@
 import styled from "@emotion/styled";
 import { Grid } from "@mui/material";
 import { Box, Stack } from "@mui/system";
+import { useEffect, useRef } from "react";
 
 const SocialIcon = styled(Box)({
   width: "25px",
-  transition: "all 0.3s ease-out",
+//   transition: "all 0.3s ease-out",
   "&:hover": {
     cursor: "pointer",
-    transform: "scale(1.25)",
+    // transform: "scale(1.25)",
   },
 });
 
-const Navbar = () => {
+const Navbar = ({ timeline, ease }) => {
+
+    let logo = useRef(null);
+    let icons = useRef(null);
+
+    useEffect(() => {
+        timeline.from(logo, 2, {
+            opacity: 0,
+            y: -400,
+            ease: ease,
+        });
+        timeline.from(icons.children, 3, {
+            opacity: 1,
+            y: -400,
+            stagger: {
+                amount: 0.4,
+            },
+            ease: ease,
+        }, "-=2");
+    }, []);
 
     return (
       <Grid
@@ -21,23 +41,23 @@ const Navbar = () => {
           display: "flex",
           gap: {
             xs: "2rem",
-            sm: "0"
+            sm: "0",
           },
           justifyContent: {
             xs: "center",
-            sm: "space-between"
+            sm: "space-between",
           },
           alignItems: "center",
           marginTop: {
             xs: "1rem",
             sm: "1.5rem",
             md: "2rem",
-            lg: "4rem"
+            lg: "4rem",
           },
           height: "80px",
         }}
       >
-        <Stack direction="row" gap={4}>
+        <Stack ref={(el) => (icons = el)} direction="row" gap={4}>
           <SocialIcon
             component="img"
             src="src/assets/social-icons/instagram.svg"
@@ -59,9 +79,15 @@ const Navbar = () => {
           />
         </Stack>
         <Box>
-          <Box component="img" src="src/assets/Rm-logo-clear.svg" mt={2.5} sx={{
-            display: {xs: "none", md: "block"}
-          }}/>
+          <Box
+            ref={(el) => (logo = el)}
+            component="img"
+            src="src/assets/Rm-logo-clear.svg"
+            mt={2.5}
+            sx={{
+              display: { xs: "none", md: "block" },
+            }}
+          />
         </Box>
       </Grid>
     );

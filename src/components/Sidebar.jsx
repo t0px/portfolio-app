@@ -1,7 +1,6 @@
 import { Grid, Typography } from "@mui/material";
 import { Box, Stack } from "@mui/system";
 import "/src/css/sidebar.css";
-import styled from "@emotion/styled";
 import MobileMenu from "./MobileMenu";
 import { useEffect, useState, useRef } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -31,12 +30,35 @@ const navItems = [
   },
 ];
 
-const Sidebar = ({ currentIndex, setCurrentIndex }) => {
+const Sidebar = ({ currentIndex, setCurrentIndex, timeline, ease }) => {
+
+// Menu Open Function
   const handleMenuOpen = () => {
     setIsOpen((prevIsOpen) => !prevIsOpen);
   };
 
   const [isOpen, setIsOpen] = useState(false);
+
+  //GSAP content
+    let sideBar = useRef(null);
+    let stack = useRef(null);
+
+  useEffect(() => {
+    timeline.from(sideBar, 4, {
+      opacity: 0,
+      x: 600,
+      ease: ease,
+    }, "-=4");
+    timeline.from(stack.children, 2, {
+        transform: "scale(.5)",
+        opacity: 0,
+        x: -200,
+        stagger: {
+            amount: 1,
+        },
+        ease: ease,
+    }, "-=2");
+  },[]);
 
   return (
     <>
@@ -65,6 +87,7 @@ const Sidebar = ({ currentIndex, setCurrentIndex }) => {
         onClick={handleMenuOpen}
       ></MenuIcon>
       <Grid
+        ref={el => sideBar = el}
         item
         md={6}
         position="fixed"
@@ -92,6 +115,7 @@ const Sidebar = ({ currentIndex, setCurrentIndex }) => {
           }}
         ></Box>
         <Stack
+        ref={el => stack = el}
           direction="column"
           spacing={8}
           sx={{
