@@ -1,14 +1,15 @@
 import { Typography } from "@mui/material";
 import { Box, Container } from "@mui/system";
 import ProjectsSection from "./ProjectsSection";
+import { gsap, Power3 } from "gsap";
 
 const projects = [
   {
     id: 0,
-    name: "Project 1",
+    name: "FaceDiary",
     thumbnail: "src/assets/thumbnails/screen1.png",
     date: "September 2019",
-    desc: `Landscape III, also known as "The Third," is an immersive web development project built using HTML, CSS, JavaScript, React, and designed in Figma, creating a visually captivating experience centered around landscapes.`,
+    desc: `"FaceDiary" is a revolutionary social media app that prioritizes authentic connections, fosters meaningful conversations, and empowers users to curate their online presence in a safe and engaging environment.`,
     tech: ["html", "css-3", "js", "react", "figma", "bootstrap"],
   },
   {
@@ -38,9 +39,13 @@ const projects = [
 ];
 
 const Projects = () => {
+  //GSAP
+  const tl = new gsap.timeline();
+  const ease = Power3.easeOut();
+
   return (
     <Container disableGutters component="section">
-      <ProjectsSection projects={projects} />
+      <ProjectsSection projects={projects} timeline={tl} ease={ease} />
     </Container>
   );
 };

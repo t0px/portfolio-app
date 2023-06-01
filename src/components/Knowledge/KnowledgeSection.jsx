@@ -8,6 +8,9 @@ import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { useEffect, useRef } from "react";
 import { useInView } from "react-intersection-observer";
 
+//TODO: I think divide the areas of expertise to two titles: expertise
+// & in progress and also make title and icons smaller and more compact
+
 const PrimaryButton = styled(Button)({
   backgroundColor: "transparent",
   outline: "1px solid #BFB7A4",
@@ -30,24 +33,9 @@ const KnowledgeSection = ({ timeline, ease }) => {
   let icons = useRef(null);
 
   const [knowledgeRef, inView] = useInView();
-    //TODO: might remove the animations for h1 & h2 they are annoying
+
   useEffect(() => {
     if (inView) {
-      timeline.from(h2.current, 1, {
-        opacity: 0,
-        y: 50,
-        ease: ease,
-      });
-      timeline.from(
-        h1.current,
-        1,
-        {
-          opacity: 0,
-          y: -25,
-          ease: ease,
-        },
-        "-=1"
-      );
       timeline.from(
         icons.current.children,
         0.75,
@@ -57,8 +45,7 @@ const KnowledgeSection = ({ timeline, ease }) => {
           },
           y: 400,
           ease: ease,
-        },
-        "-=1"
+        }
       );
     }
   }, [inView]);
@@ -79,8 +66,9 @@ const KnowledgeSection = ({ timeline, ease }) => {
         sx={{
           position: "absolute",
           top: 0,
-          right: { xs: -100, lg: 300 },
+          right: 300,
           pointerEvents: "none",
+          display: { xs: "none", xl: "inherit" },
         }}
       />
       <MainText

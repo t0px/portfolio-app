@@ -35,6 +35,10 @@ const icons = [
     name: "Bootstrap",
     path: "bootstrap.svg",
   },
+  {
+    name: "GSAP",
+    path: "greensock.svg",
+  },
 ];
 
 const Icons = ({ animationRef }) => {

@@ -10,6 +10,7 @@ const Hero = ({ timeline, ease }) => {
     let h2 = useRef(null);
     let btns = useRef(null);
     let square = useRef(null);
+    let heroRef = useRef(null);
 
   useEffect(() => {
     timeline.from(square, 4, {

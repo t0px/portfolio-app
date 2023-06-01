@@ -13,6 +13,8 @@ import styled from "@emotion/styled";
 import { Box, Stack } from "@mui/system";
 import "../../css/Contact/contact.css";
 import SendIcon from "@mui/icons-material/Send";
+import { useInView } from "react-intersection-observer";
+import { useEffect, useRef } from "react";
 
 const SendButton = styled(Button)({
   backgroundColor: "transparent",
@@ -30,9 +32,24 @@ const SendButton = styled(Button)({
   },
 });
 
-const ContactSection = () => {
+const ContactSection = ({ timeline, ease }) => {
+
+    let form = useRef(null);
+  const [contactRef, inView] = useInView();
+
+  useEffect(() => {
+    if (inView) {
+      timeline.from(form.current, 0.75, {
+        opacity: 0,
+        x: -400,
+        ease: ease,
+      });
+    }
+  }, [inView]);
+
   return (
     <Grid
+      ref={contactRef}
       item
       xs={12}
       sx={{
@@ -48,6 +65,8 @@ const ContactSection = () => {
           position: "absolute",
           top: { xs: -85, lg: 185 },
           right: { xs: -250, lg: 300 },
+          pointerEvents: "none",
+          display: { xs: "none", xl: "inherit" },
         }}
       />
       <MainText
@@ -85,6 +104,7 @@ const ContactSection = () => {
       </Typography>
 
       <FormControl
+      ref={form}
         sx={{
           display: "flex",
           flexDirection: "column",
@@ -157,7 +177,7 @@ const ContactSection = () => {
           variant="contained"
           sx={{
             width: { xs: 300, sm: 150 },
-            borderRadius: {xs: 2, sm: 40},
+            borderRadius: { xs: 2, sm: 40 },
           }}
           component="a"
           href="#contact"

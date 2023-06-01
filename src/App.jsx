@@ -1,5 +1,5 @@
 import { Grid } from "@mui/material";
-import { theme } from "../theme";
+import { theme } from "./theme";
 import { Box, ThemeProvider } from "@mui/system";
 import "./css/default.css";
 import Home from "./components/Home/Home";
@@ -15,7 +15,6 @@ import ArrowNav from "./components/ArrowNav";
 import { useState } from "react";
 import { loadFull } from "tsparticles";
 import { gsap, Power3 } from "gsap";
-import Stars from "./components/Stars";
 
 const pageItems = [
   {
@@ -68,7 +67,6 @@ function App() {
   return (
     // Overriding default font with theme
       <ThemeProvider theme={theme}>
-        <Stars />
         <Logo />
         <ArrowNav
           timeline={tl}

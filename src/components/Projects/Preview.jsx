@@ -3,10 +3,12 @@ import { Button, Divider, IconButton, Typography } from "@mui/material";
 import { Box, Stack } from "@mui/system";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
-const Preview = ({ currentPreview, setCurrentPreview, projects }) => {
-  //TODO: create animation between projects
+const Preview = ({ currentPreview, setCurrentPreview, projects, timeline, ease }) => {
+
+    let previewImg = useRef(null);
+
   //TODO: maybe create modal that displays "read more"
   //for more info on each project
   const Navigator = styled(Box)(({ theme }) => ({
@@ -21,13 +23,20 @@ const Preview = ({ currentPreview, setCurrentPreview, projects }) => {
 
   const [currentPreviewIndex, setCurrentPreviewIndex] = useState(0);
 
-// update states on change since they are janky
+// update states on change, animation
 useEffect(() => {
   const updatePreview = () => {
     const preview = projects.find(
       (preview) => preview.id === currentPreviewIndex
     );
     setCurrentPreview(preview);
+    timeline.from(previewImg.current, 0.35, {
+        x: -150,
+        y: 150,
+        transform: "scale(0.15)",
+        opacity: 0.35,
+        ease: ease,
+    });
   };
 
   updatePreview();
@@ -103,9 +112,11 @@ useEffect(() => {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
+          cursor: "pointer",
         }}
       >
         <Box
+        ref={previewImg}
           component="img"
           sx={{
             position: { xs: "sticky", lg: "absolute" },
@@ -122,7 +133,7 @@ useEffect(() => {
           width: { md: "50%" },
           height: { lg: "100%" },
           color: "#E0E0E0",
-          textTransform: "uppercase",
+        //   textTransform: "uppercase",
           whiteSpace: "wrap",
           textAlign: { sm: "center", md: "left" },
         }}

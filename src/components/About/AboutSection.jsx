@@ -1,35 +1,11 @@
 import { Grid, Typography } from "@mui/material";
 import MainText from "../MainText";
 import { Box } from "@mui/system";
-import { useInView } from "react-intersection-observer";
-import { useEffect, useRef } from "react";
 
-const AboutSection = ({ timeline, ease }) => {
-
-    let h2 = useRef(null);
-    let h1 = useRef(null);
-
-    const [aboutRef, inView] = useInView();
-
-    useEffect(() => {
-        if (inView) {
-        timeline.from(h2.current, 1, {
-        opacity: 0,
-          y: 50,
-          ease: ease,
-        });
-        timeline.from(h1.current, 1, {
-        opacity: 0,
-          y: -25,
-          ease: ease,
-        }, "-=1");
-        }
-
-    }, [inView])
+const AboutSection = () => {
 
   return (
     <Grid
-      ref={aboutRef}
       item
       xs={12}
       sx={{
@@ -60,7 +36,6 @@ const AboutSection = ({ timeline, ease }) => {
         }}
       />
       <MainText
-        animationRef={(el) => (h1.current = el)}
         title={
           <span>
             <strong>Who I</strong> Am
@@ -71,7 +46,6 @@ const AboutSection = ({ timeline, ease }) => {
         //TODO: add flowing skeleton cube that users can move and is rotating
       }
       <Typography
-        ref={h2}
         variant="h2"
         sx={{
           fontSize: {
