@@ -6,11 +6,11 @@ import { useEffect, useRef } from "react";
 
 const Hero = ({ timeline, ease }) => {
 
+
     let h1 = useRef(null);
     let h2 = useRef(null);
     let btns = useRef(null);
     let square = useRef(null);
-    let heroRef = useRef(null);
 
   useEffect(() => {
     timeline.from(square, 4, {

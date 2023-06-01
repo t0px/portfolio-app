@@ -1,28 +1,32 @@
-import { Button, Divider, Grid, Typography } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 import MainText from "../MainText";
-import styled from "@emotion/styled";
 import { Box, Stack } from "@mui/system";
 import Preview from "./Preview";
 import { useEffect, useRef, useState } from "react";
 import { useInView } from "react-intersection-observer";
 
-
 const ProjectsSection = ({ projects, timeline, ease }) => {
-
   let previewTab = useRef(null);
+  const [isAnimating, setIsAnimating] = useState(false);
 
   const [knowledgeRef, inView] = useInView();
   useEffect(() => {
     if (inView) {
-      timeline.from(previewTab.current, 0.75, {
-        opacity: 0,
-        y: 400,
-        ease: ease,
-      });
+      if (isAnimating === false) {
+        setIsAnimating(true);
+        timeline.from(previewTab.current, 0.75, {
+          opacity: 0,
+          y: 400,
+          ease: ease,
+          onComplete: () => {
+            setIsAnimating(false);
+          },
+        });
+      }
     }
   }, [inView]);
 
-    const [currentPreview, setCurrentPreview] = useState(projects[0]);
+  const [currentPreview, setCurrentPreview] = useState(projects[0]);
 
   return (
     <Grid
@@ -78,8 +82,6 @@ const ProjectsSection = ({ projects, timeline, ease }) => {
         <strong>actual code</strong> and <strong>designs</strong>. While some of
         them are still in progress, I have chosen to showcase them here to
         demonstrate the progress I've made and to keep track of my portfolio.
-        <br /> <br /> <strong>Below</strong>, you can scroll through the
-        projects and see what they involve and how they were created.
       </Typography>
       <Grid
         ref={previewTab}

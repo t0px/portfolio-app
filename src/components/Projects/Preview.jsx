@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { Button, Divider, IconButton, Typography } from "@mui/material";
+import { Divider, IconButton, Typography } from "@mui/material";
 import { Box, Stack } from "@mui/system";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
@@ -8,6 +8,7 @@ import { useEffect, useRef, useState } from "react";
 const Preview = ({ currentPreview, setCurrentPreview, projects, timeline, ease }) => {
 
     let previewImg = useRef(null);
+    const [isAnimating, setIsAnimating] = useState(false);
 
   //TODO: maybe create modal that displays "read more"
   //for more info on each project
@@ -29,14 +30,21 @@ useEffect(() => {
     const preview = projects.find(
       (preview) => preview.id === currentPreviewIndex
     );
-    setCurrentPreview(preview);
-    timeline.from(previewImg.current, 0.35, {
+    if (isAnimating === false) {
+        setIsAnimating(true);
+        setCurrentPreview(preview);
+        timeline.from(previewImg.current, 0.35, {
         x: -150,
         y: 150,
         transform: "scale(0.15)",
         opacity: 0.35,
         ease: ease,
-    });
+        onComplete: () => {
+            setIsAnimating(false);
+        }
+        });
+    }
+
   };
 
   updatePreview();
@@ -116,7 +124,7 @@ useEffect(() => {
         }}
       >
         <Box
-        ref={previewImg}
+          ref={previewImg}
           component="img"
           sx={{
             position: { xs: "sticky", lg: "absolute" },
@@ -133,7 +141,7 @@ useEffect(() => {
           width: { md: "50%" },
           height: { lg: "100%" },
           color: "#E0E0E0",
-        //   textTransform: "uppercase",
+          textTransform: "uppercase",
           whiteSpace: "wrap",
           textAlign: { sm: "center", md: "left" },
         }}
@@ -147,6 +155,7 @@ useEffect(() => {
             fontWeight: 600,
             marginBottom: { md: 1 },
             marginTop: { xs: 1, md: 0 },
+            letterSpacing: 3,
           }}
         >
           {
@@ -157,7 +166,7 @@ useEffect(() => {
         <Typography
           mb={2}
           variant="h6"
-          sx={{ opacity: 0.7, fontSize: { xs: 10, lg: 14 } }}
+          sx={{ opacity: 0.7, fontSize: { xs: 10, lg: 14 }, letterSpacing: 1 }}
         >
           {
             //date of project
@@ -194,7 +203,7 @@ useEffect(() => {
             <Box
               component="img"
               src={`src/assets/skill-icons/${item}.svg`}
-              sx={{ height: { xs: 15, sm: 20, md: 25 }, borderRadius: "50%" }}
+              sx={{ height: { xs: 15, sm: 20, md: 25 }}}
               key={index}
             />
           ))}

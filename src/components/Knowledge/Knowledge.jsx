@@ -1,5 +1,4 @@
-import { Typography } from "@mui/material";
-import { Box, Container } from "@mui/system";
+import { Container } from "@mui/system";
 import KnowledgeSection from "./KnowledgeSection";
 import { gsap, Power3 } from "gsap";
 

@@ -8,12 +8,10 @@ import Projects from "./components/Projects/Projects";
 import About from "./components/About/About";
 import Contact from "./components/Contact/Contact";
 import Sidebar from "./components/Sidebar";
-import { Parallax, ParallaxProvider } from "react-scroll-parallax";
 import PageWrapper from "./components/PageWrapper";
 import Logo from "./components/Logo";
 import ArrowNav from "./components/ArrowNav";
 import { useState } from "react";
-import { loadFull } from "tsparticles";
 import { gsap, Power3 } from "gsap";
 
 const pageItems = [

@@ -5,8 +5,9 @@ import { Box, Stack } from "@mui/system";
 import Icons from "./Icons";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useInView } from "react-intersection-observer";
+import { useGlobalState, setGlobalState } from "../globalState";
 
 //TODO: I think divide the areas of expertise to two titles: expertise
 // & in progress and also make title and icons smaller and more compact
@@ -31,22 +32,25 @@ const KnowledgeSection = ({ timeline, ease }) => {
   let h2 = useRef(null);
   let h1 = useRef(null);
   let icons = useRef(null);
-
+  const [isAnimating, setIsAnimating] = useState(false);
   const [knowledgeRef, inView] = useInView();
 
   useEffect(() => {
     if (inView) {
-      timeline.from(
-        icons.current.children,
-        0.75,
-        {
-          stagger: {
-            amount: 0.75,
-          },
-          y: 400,
-          ease: ease,
+        if(isAnimating === false) {
+            setIsAnimating(true);
+      timeline.from(icons.current.children, 0.75, {
+        stagger: {
+          amount: 0.75,
+        },
+        y: 400,
+        ease: ease,
+        onComplete: () => {
+            setIsAnimating(false);
         }
-      );
+      });
+        }
+
     }
   }, [inView]);
   return (
@@ -101,10 +105,13 @@ const KnowledgeSection = ({ timeline, ease }) => {
           mb: 5,
         }}
       >
-        As a <strong>frontend web developer</strong>, it's important to me to
+        {
+        //TODO: MAYBE REMOVE ALL THE BOLDED TEXTS
+        }
+        As a frontend web developer, it's important to me to
         ensure that every detail on the page is as smooth as possible.
         <br /> <br />
-        <strong>Ever since</strong> I began learning how to code, I have had the
+        Ever since I began learning how to code, I have had the
         opportunity to familiarize myself with various technologies and
         libraries that have greatly enhanced my coding experience, making it
         both more exciting and efficient.

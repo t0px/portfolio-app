@@ -1,5 +1,4 @@
-import { Typography } from "@mui/material";
-import { Box, Container } from "@mui/system";
+import { Container } from "@mui/system";
 import ProjectsSection from "./ProjectsSection";
 import { gsap, Power3 } from "gsap";
 
@@ -10,7 +9,7 @@ const projects = [
     thumbnail: "src/assets/thumbnails/screen1.png",
     date: "September 2019",
     desc: `"FaceDiary" is a revolutionary social media app that prioritizes authentic connections, fosters meaningful conversations, and empowers users to curate their online presence in a safe and engaging environment.`,
-    tech: ["html", "css-3", "js", "react", "figma", "bootstrap"],
+    tech: ["html", "css-3", "js", "react", "mui"],
   },
   {
     id: 1,

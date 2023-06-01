@@ -9,6 +9,7 @@ const PageGrid = styled(Grid)({
 });
 
 const PageWrapper = ({ item, timeline, ease }) => {
+
   return (
     <Box
       sx={{

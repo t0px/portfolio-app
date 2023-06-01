@@ -1,11 +1,7 @@
 import {
   Button,
-  Divider,
   FormControl,
   Grid,
-  Input,
-  Switch,
-  TextField,
   Typography,
 } from "@mui/material";
 import MainText from "../MainText";
@@ -14,7 +10,7 @@ import { Box, Stack } from "@mui/system";
 import "../../css/Contact/contact.css";
 import SendIcon from "@mui/icons-material/Send";
 import { useInView } from "react-intersection-observer";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const SendButton = styled(Button)({
   backgroundColor: "transparent",
@@ -34,16 +30,25 @@ const SendButton = styled(Button)({
 
 const ContactSection = ({ timeline, ease }) => {
 
+    const [isAnimating, setIsAnimating] = useState(false);
+
     let form = useRef(null);
   const [contactRef, inView] = useInView();
 
   useEffect(() => {
     if (inView) {
+        if (isAnimating === false) {
+            setIsAnimating(true);
       timeline.from(form.current, 0.75, {
         opacity: 0,
         x: -400,
         ease: ease,
+        onComplete: () => {
+            setIsAnimating(false);
+        }
       });
+        }
+
     }
   }, [inView]);
 
