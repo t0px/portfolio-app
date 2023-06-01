@@ -1,14 +1,15 @@
 import styled from "@emotion/styled";
-import { Divider, IconButton, Typography } from "@mui/material";
+import { Divider, IconButton, Tooltip, Typography } from "@mui/material";
 import { Box, Stack } from "@mui/system";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { useEffect, useRef, useState } from "react";
+import useBearStore from "../../hooks/bearStore";
 
 const Preview = ({ currentPreview, setCurrentPreview, projects, timeline, ease }) => {
 
     let previewImg = useRef(null);
-    const [isAnimating, setIsAnimating] = useState(false);
+    const isAnimating = useBearStore((state) => state.isAnimating);
 
   //TODO: maybe create modal that displays "read more"
   //for more info on each project
@@ -31,7 +32,8 @@ useEffect(() => {
       (preview) => preview.id === currentPreviewIndex
     );
     if (isAnimating === false) {
-        setIsAnimating(true);
+        useBearStore.setState({isAnimating: true});
+        console.log("Updated Animation!");
         setCurrentPreview(preview);
         timeline.from(previewImg.current, 0.35, {
         x: -150,
@@ -40,7 +42,7 @@ useEffect(() => {
         opacity: 0.35,
         ease: ease,
         onComplete: () => {
-            setIsAnimating(false);
+        useBearStore.setState({ isAnimating: false });
         }
         });
     }
@@ -200,12 +202,20 @@ useEffect(() => {
           }}
         >
           {currentPreview.tech.map((item, index) => (
-            <Box
-              component="img"
-              src={`src/assets/skill-icons/${item}.svg`}
-              sx={{ height: { xs: 15, sm: 20, md: 25 }}}
+            <Tooltip
               key={index}
-            />
+              title={item}
+              placement="bottom"
+              arrow
+              disableInteractive
+            >
+              <Box
+                component="img"
+                src={`src/assets/skill-icons/${item}.svg`}
+                sx={{ height: { xs: 15, sm: 20, md: 25 } }}
+                key={index}
+              />
+            </Tooltip>
           ))}
         </Stack>
       </Box>

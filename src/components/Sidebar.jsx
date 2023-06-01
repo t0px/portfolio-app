@@ -5,7 +5,6 @@ import MobileMenu from "./MobileMenu";
 import { useEffect, useState, useRef } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
 
-
 //TODO: this isn't efficient..
 const navItems = [
   {

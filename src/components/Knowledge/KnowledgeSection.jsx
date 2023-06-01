@@ -7,7 +7,7 @@ import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { useEffect, useRef, useState } from "react";
 import { useInView } from "react-intersection-observer";
-import { useGlobalState, setGlobalState } from "../globalState";
+import useBearStore from "../../hooks/bearStore";
 
 //TODO: I think divide the areas of expertise to two titles: expertise
 // & in progress and also make title and icons smaller and more compact
@@ -32,13 +32,15 @@ const KnowledgeSection = ({ timeline, ease }) => {
   let h2 = useRef(null);
   let h1 = useRef(null);
   let icons = useRef(null);
-  const [isAnimating, setIsAnimating] = useState(false);
-  const [knowledgeRef, inView] = useInView();
+const [knowledgeRef, inView] = useInView();
+
+const isAnimating = useBearStore((state) => state.isAnimating);
+
 
   useEffect(() => {
     if (inView) {
         if(isAnimating === false) {
-            setIsAnimating(true);
+            useBearStore.setState({isAnimating: true});
       timeline.from(icons.current.children, 0.75, {
         stagger: {
           amount: 0.75,
@@ -46,7 +48,7 @@ const KnowledgeSection = ({ timeline, ease }) => {
         y: 400,
         ease: ease,
         onComplete: () => {
-            setIsAnimating(false);
+            useBearStore.setState({ isAnimating: false });
         }
       });
         }
@@ -144,7 +146,7 @@ const KnowledgeSection = ({ timeline, ease }) => {
             mb: 2,
           }}
         >
-          Areas of <strong>Expertise</strong>
+          Areas of <strong>Knowledge</strong>
         </Typography>
         <Icons animationRef={(el) => (icons.current = el)} />
         {

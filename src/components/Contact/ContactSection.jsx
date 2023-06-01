@@ -11,6 +11,7 @@ import "../../css/Contact/contact.css";
 import SendIcon from "@mui/icons-material/Send";
 import { useInView } from "react-intersection-observer";
 import { useEffect, useRef, useState } from "react";
+import useBearStore from "../../hooks/bearStore";
 
 const SendButton = styled(Button)({
   backgroundColor: "transparent",
@@ -30,7 +31,7 @@ const SendButton = styled(Button)({
 
 const ContactSection = ({ timeline, ease }) => {
 
-    const [isAnimating, setIsAnimating] = useState(false);
+    const isAnimating = useBearStore((state) => state.isAnimating);
 
     let form = useRef(null);
   const [contactRef, inView] = useInView();
@@ -38,13 +39,14 @@ const ContactSection = ({ timeline, ease }) => {
   useEffect(() => {
     if (inView) {
         if (isAnimating === false) {
-            setIsAnimating(true);
+            useBearStore.setState({isAnimating: true})
+            console.log("Contact Updated Animation!");
       timeline.from(form.current, 0.75, {
         opacity: 0,
         x: -400,
         ease: ease,
         onComplete: () => {
-            setIsAnimating(false);
+            useBearStore.setState({ isAnimating: false});
         }
       });
         }
@@ -188,6 +190,7 @@ const ContactSection = ({ timeline, ease }) => {
           href="#contact"
           className="send-btn"
           endIcon={<SendIcon />}
+          onClick={() => console.log(isAnimating)}
         >
           Send
         </SendButton>

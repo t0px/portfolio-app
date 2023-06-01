@@ -5,7 +5,7 @@ import "../../css/Knowledge/icons.css";
 const icons = [
   {
     name: "HTML",
-    path: "html.svg",
+    path: "html-5.svg",
   },
   {
     name: "CSS",

@@ -1,19 +1,12 @@
 import { Typography } from "@mui/material";
 import { Box, Stack } from "@mui/system";
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import '../css/mobilemenu.css';
 
 const MobileMenu = ({ navItems, isOpen, setIsOpen, currentIndex, setCurrentIndex }) => {
 
-    const menuRef = useRef();
-
-    useEffect(() => {
-        isOpen && menuRef.current.focus();
-    }, [setIsOpen, isOpen])
-
   return (
     <Box
-      ref={menuRef}
       className={`mobile-menu ${isOpen ? "active" : ""}`}
       position="fixed"
       sx={{
