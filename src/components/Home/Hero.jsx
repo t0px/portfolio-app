@@ -3,14 +3,24 @@ import { Box} from "@mui/system";
 import MainText from "../MainText";
 import Buttons from "../Buttons";
 import { useEffect, useRef } from "react";
+import { useInView } from "react-intersection-observer";
+import useBearStore from "../../hooks/bearStore";
 
 const Hero = ({ timeline, ease }) => {
 
+    const [heroRef, inView] = useInView();
 
     let h1 = useRef(null);
     let h2 = useRef(null);
     let btns = useRef(null);
     let square = useRef(null);
+
+    //active link
+    useEffect(() => {
+        if (inView) {
+            useBearStore.setState({ isActiveLink: "#home" });
+        }
+    })
 
   useEffect(() => {
     timeline.from(square, 4, {
@@ -41,6 +51,7 @@ const Hero = ({ timeline, ease }) => {
 
   return (
     <Grid
+    ref={heroRef}
       item
       xs={12}
       mt={10}

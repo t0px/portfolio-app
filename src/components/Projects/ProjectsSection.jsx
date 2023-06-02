@@ -4,6 +4,7 @@ import { Box, Stack } from "@mui/system";
 import Preview from "./Preview";
 import { useEffect, useRef, useState } from "react";
 import { useInView } from "react-intersection-observer";
+import useBearStore from "../../hooks/bearStore";
 
 const ProjectsSection = ({ projects, timeline, ease }) => {
   let previewTab = useRef(null);
@@ -12,6 +13,7 @@ const ProjectsSection = ({ projects, timeline, ease }) => {
   const [knowledgeRef, inView] = useInView();
   useEffect(() => {
     if (inView) {
+        useBearStore.setState({ isActiveLink: "#projects" });
       if (isAnimating === false) {
         setIsAnimating(true);
         timeline.from(previewTab.current, 0.75, {

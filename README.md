@@ -4,6 +4,7 @@
 - [ReactJS](https://react.dev/)
 - [Material UI](https://mui.com/)
 - [Figma](https://www.figma.com/files/recent?fuid=1243216123501650839)
+- [GSAP](https://greensock.com/gsap/)
 
 ## About
 > I created this to provide useful information about myself and my projects for clients / employers.<br>

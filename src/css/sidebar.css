@@ -23,3 +23,11 @@
 .sidenav-item:hover {
     color: white;
 }
+
+.active-link::before {
+    width: 100%;
+}
+
+.active-link {
+    color: #E0E0E0 !important;
+}

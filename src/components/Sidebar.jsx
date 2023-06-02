@@ -4,6 +4,7 @@ import "/src/css/sidebar.css";
 import MobileMenu from "./MobileMenu";
 import { useEffect, useState, useRef } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
+import useBearStore from "../hooks/bearStore";
 
 //TODO: this isn't efficient..
 const navItems = [
@@ -30,6 +31,9 @@ const navItems = [
 ];
 
 const Sidebar = ({ currentIndex, setCurrentIndex, timeline, ease }) => {
+
+    //Get active link state
+    const isActiveLink = useBearStore((state) => state.isActiveLink);
 
 // Menu Open Function
   const handleMenuOpen = () => {
@@ -86,7 +90,7 @@ const Sidebar = ({ currentIndex, setCurrentIndex, timeline, ease }) => {
         onClick={handleMenuOpen}
       ></MenuIcon>
       <Grid
-        ref={el => sideBar = el}
+        ref={(el) => (sideBar = el)}
         item
         md={6}
         position="fixed"
@@ -114,7 +118,7 @@ const Sidebar = ({ currentIndex, setCurrentIndex, timeline, ease }) => {
           }}
         ></Box>
         <Stack
-        ref={el => stack = el}
+          ref={(el) => (stack = el)}
           direction="column"
           spacing={8}
           sx={{
@@ -131,8 +135,12 @@ const Sidebar = ({ currentIndex, setCurrentIndex, timeline, ease }) => {
               variant="li"
               component="a"
               href={item.path}
-              sx={{ textDecoration: "none", color: "inherit", p: 1.5 }}
-              className="sidenav-item"
+              sx={{
+                textDecoration: "none",
+                color: "inherit",
+                p: 1.5,
+              }}
+              className={`sidenav-item ${isActiveLink === item.path ? 'active-link' : ''}`}
               onClick={() => setCurrentIndex(navItems.indexOf(item))}
             >
               {item.name}

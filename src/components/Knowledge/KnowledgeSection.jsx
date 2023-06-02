@@ -32,27 +32,39 @@ const KnowledgeSection = ({ timeline, ease }) => {
   let h2 = useRef(null);
   let h1 = useRef(null);
   let icons = useRef(null);
-const [knowledgeRef, inView] = useInView();
+  const [knowledgeRef, inView] = useInView();
 
-const isAnimating = useBearStore((state) => state.isAnimating);
+  const isAnimating = useBearStore((state) => state.isAnimating);
+  
+  //Handle mobile scroll buttons
+  const scrollRef = useRef(null);
+  const handleScroll = (type) => {
+    switch (type) {
+        case "left":
+    scrollRef.current.scrollLeft -= 50;
+            break;
+        case "right":
+    scrollRef.current.scrollLeft += 50;
+    }
+  };
 
-
+    //animation & active link
   useEffect(() => {
     if (inView) {
-        if(isAnimating === false) {
-            useBearStore.setState({isAnimating: true});
-      timeline.from(icons.current.children, 0.75, {
-        stagger: {
-          amount: 0.75,
-        },
-        y: 400,
-        ease: ease,
-        onComplete: () => {
+        useBearStore.setState({isActiveLink: "#knowledge"});
+      if (isAnimating === false) {
+        useBearStore.setState({ isAnimating: true });
+        timeline.from(icons.current.children, 0.75, {
+          stagger: {
+            amount: 0.75,
+          },
+          y: 400,
+          ease: ease,
+          onComplete: () => {
             useBearStore.setState({ isAnimating: false });
-        }
-      });
-        }
-
+          },
+        });
+      }
     }
   }, [inView]);
   return (
@@ -108,15 +120,15 @@ const isAnimating = useBearStore((state) => state.isAnimating);
         }}
       >
         {
-        //TODO: MAYBE REMOVE ALL THE BOLDED TEXTS
+          //TODO: MAYBE REMOVE ALL THE BOLDED TEXTS
         }
-        As a frontend web developer, it's important to me to
-        ensure that every detail on the page is as smooth as possible.
+        As a frontend web developer, it's important to me to ensure that every
+        detail on the page is as smooth as possible.
         <br /> <br />
-        Ever since I began learning how to code, I have had the
-        opportunity to familiarize myself with various technologies and
-        libraries that have greatly enhanced my coding experience, making it
-        both more exciting and efficient.
+        Ever since I began learning how to code, I have had the opportunity to
+        familiarize myself with various technologies and libraries that have
+        greatly enhanced my coding experience, making it both more exciting and
+        efficient.
       </Typography>
       <PrimaryButton
         variant="contained"
@@ -148,7 +160,10 @@ const isAnimating = useBearStore((state) => state.isAnimating);
         >
           Areas of <strong>Knowledge</strong>
         </Typography>
-        <Icons animationRef={(el) => (icons.current = el)} />
+        <Icons
+          animationRef={(el) => (icons.current = el)}
+          scrollRef={scrollRef}
+        />
         {
           //TODO: perhaps switch to animated scroll cue for mobile
         }
@@ -160,6 +175,7 @@ const isAnimating = useBearStore((state) => state.isAnimating);
             color: "#E0E0E0",
             display: { xs: "inline", sm: "none" },
           }}
+          onClick={() => handleScroll("left")}
         />
         <ChevronRightIcon
           sx={{
@@ -169,6 +185,7 @@ const isAnimating = useBearStore((state) => state.isAnimating);
             color: "#E0E0E0",
             display: { xs: "inline", sm: "none" },
           }}
+          onClick={() => handleScroll("right")}
         />
       </Box>
     </Grid>

@@ -41,9 +41,9 @@ const icons = [
   },
 ];
 
-const Icons = ({ animationRef }) => {
+const Icons = ({ animationRef, scrollRef }) => {
   return (
-    <Box sx={{ overflowX: { xs: "scroll" } }}>
+    <Box sx={{ overflowX: { xs: "scroll" } }} ref={scrollRef}>
       <Stack direction="row" gap={2} ref={animationRef}>
         {icons.map((icon, index) => (
           <Tooltip

@@ -29,6 +29,22 @@ const SendButton = styled(Button)({
   },
 });
 
+const StyledInput = styled(Box)({
+  border: "none",
+  color: "#E0E0E0",
+  backgroundColor: "transparent",
+  borderBottom: "1px solid #92713C",
+  width: "200%",
+  boxSizing: "border-box",
+  fontFamily: "Poppins",
+  transition: "all 0.3s ease",
+  "&:focus": {
+    outline: "none",
+    borderBottom: "1px solid #fff",
+    boxShadow: "0 0 300px 0 rgba(255,255,255,0.15)",
+  },
+});
+
 const ContactSection = ({ timeline, ease }) => {
 
     const isAnimating = useBearStore((state) => state.isAnimating);
@@ -38,6 +54,7 @@ const ContactSection = ({ timeline, ease }) => {
 
   useEffect(() => {
     if (inView) {
+        useBearStore.setState({isActiveLink: "#contact"})
         if (isAnimating === false) {
             useBearStore.setState({isAnimating: true})
             console.log("Contact Updated Animation!");
@@ -111,49 +128,32 @@ const ContactSection = ({ timeline, ease }) => {
       </Typography>
 
       <FormControl
-      ref={form}
+        ref={form}
         sx={{
           display: "flex",
           flexDirection: "column",
           width: { xs: 150, sm: 230, lg: 240 },
         }}
       >
-        <Box
+        <StyledInput
           component="input"
           placeholder="Your Name"
           sx={{
-            border: "none",
-            color: "#E0E0E0",
-            bgcolor: "transparent",
-            borderBottom: "1px solid #92713C",
-            width: "200%",
-            boxSizing: "border-box",
+            mb: 6,
             pb: 1.5,
-            fontFamily: "Poppins",
             fontSize: { xs: 14, sm: 15, lg: 16 },
-            transition: "all 0.3s ease",
-            mb: 8,
-            "&:focus": { outline: "none", borderBottom: "1px solid #fff" },
           }}
-        ></Box>
-        <Box
+        ></StyledInput>
+        <StyledInput
           component="input"
           placeholder="Email Address"
           sx={{
-            border: "none",
-            color: "#E0E0E0",
-            bgcolor: "transparent",
-            borderBottom: "1px solid #92713C",
-            width: "200%",
-            boxSizing: "border-box",
+            mb: 6,
             pb: 1.5,
-            fontFamily: "Poppins",
             fontSize: { xs: 14, sm: 15, lg: 16 },
             transition: "all 0.3s ease",
-            mb: 6,
-            "&:focus": { outline: "none", borderBottom: "1px solid #fff" },
           }}
-        ></Box>
+        ></StyledInput>
         <Box
           rows={3}
           cols={20}
@@ -175,8 +175,9 @@ const ContactSection = ({ timeline, ease }) => {
             transition: "all 0.3s ease",
             opacity: 0.85,
             "&:focus": {
-              border: "1px solid #fff",
-              borderBottom: "1px solid #fff",
+              boxShadow: "0 0 300px 0 rgba(255,255,255,0.15)",
+              outline: "none",
+              //   border: "1px solid #fff",
             },
           }}
         ></Box>

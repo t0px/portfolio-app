@@ -1,11 +1,24 @@
 import { Grid, Typography } from "@mui/material";
 import MainText from "../MainText";
 import { Box } from "@mui/system";
+import { useInView } from "react-intersection-observer";
+import useBearStore from "../../hooks/bearStore";
+import { useEffect } from "react";
 
 const AboutSection = () => {
 
+  const [aboutRef, inView] = useInView();
+
+  //active link
+  useEffect(() => {
+    if (inView) {
+      useBearStore.setState({ isActiveLink: "#about" });
+    }
+  });
+
   return (
     <Grid
+    ref={aboutRef}
       item
       xs={12}
       sx={{

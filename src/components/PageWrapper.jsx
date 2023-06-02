@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import { Grid } from "@mui/material";
 import { Box } from "@mui/system";
+import { useEffect, useRef } from "react";
 
 const PageGrid = styled(Grid)({
   width: "70vw",
