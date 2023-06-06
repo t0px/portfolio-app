@@ -1,4 +1,4 @@
-import { Grid } from "@mui/material";
+import { Alert, Grid } from "@mui/material";
 import { theme } from "./theme";
 import { Box, ThemeProvider } from "@mui/system";
 import "./css/default.css";
@@ -13,7 +13,7 @@ import Logo from "./components/Logo";
 import ArrowNav from "./components/ArrowNav";
 import { useState } from "react";
 import { gsap, Power3 } from "gsap";
-
+import AlertMsg from "./components/AlertMsg";
 const pageItems = [
   {
     id: 0,
@@ -53,8 +53,8 @@ const pageItems = [
 ];
 
 
-
 function App() {
+
   //GSAP
   const tl = new gsap.timeline();
   const ease = Power3.easeOut();
@@ -63,28 +63,28 @@ function App() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   return (
-    // Overriding default font with theme
-      <ThemeProvider theme={theme}>
-        <Logo />
-        <ArrowNav
-          timeline={tl}
-          ease={ease}
-          currentIndex={currentIndex}
-          setCurrentIndex={setCurrentIndex}
-          currentPage={currentPage}
-          setCurrentPage={setCurrentPage}
-          pageItems={pageItems}
-        />
-        <Sidebar
-          currentIndex={currentIndex}
-          setCurrentIndex={setCurrentIndex}
-          timeline={tl}
-          ease={ease}
-        />
-        {pageItems.map((item, index) => (
-          <PageWrapper item={item} key={index} />
-        ))}
-      </ThemeProvider>
+    <ThemeProvider theme={theme}>
+      <AlertMsg />
+      <Logo />
+      <ArrowNav
+        timeline={tl}
+        ease={ease}
+        currentIndex={currentIndex}
+        setCurrentIndex={setCurrentIndex}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+        pageItems={pageItems}
+      />
+      <Sidebar
+        currentIndex={currentIndex}
+        setCurrentIndex={setCurrentIndex}
+        timeline={tl}
+        ease={ease}
+      />
+      {pageItems.map((item, index) => (
+        <PageWrapper item={item} key={index} />
+      ))}
+    </ThemeProvider>
   );
 }
 

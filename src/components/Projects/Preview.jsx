@@ -114,28 +114,18 @@ useEffect(() => {
         </Stack>
       </Navigator>
       <Box
+        ref={previewImg}
         sx={{
-          width: { xs: "60%", md: "40%", lg: "50%" },
-          height: { md: "100%" },
-          position: "relative",
-          overflow: "hidden",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
+          width: { xs: "80%", sm: "60%", md: "40%", lg: "50%" },
+          height: { xs: "60%", sm: "50%", md: "100%" },
           cursor: "pointer",
+          backgroundImage: `url(${currentPreview.thumbnail})`,
+          backgroundSize: "contain",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
         }}
-      >
-        <Box
-          ref={previewImg}
-          component="img"
-          sx={{
-            position: { xs: "sticky", lg: "absolute" },
-            width: "100%",
-            objectFit: "cover",
-          }}
-          src={currentPreview.thumbnail}
-        />
-      </Box>
+      />
+
 
       <Box
         sx={{
@@ -212,7 +202,7 @@ useEffect(() => {
               <Box
                 component="img"
                 src={`src/assets/skill-icons/${item}.svg`}
-                sx={{ height: { xs: 15, sm: 20, md: 25 } }}
+                sx={{ height: { xs: 15, sm: 20, md: 25 }, cursor: "pointer" }}
                 key={index}
               />
             </Tooltip>

@@ -32,6 +32,10 @@ const icons = [
     path: "photoshop.svg",
   },
   {
+    name: "Illustrator",
+    path: "illustrator.svg",
+  },
+  {
     name: "Bootstrap",
     path: "bootstrap.svg",
   },
@@ -44,7 +48,7 @@ const icons = [
 const Icons = ({ animationRef, scrollRef }) => {
   return (
     <Box sx={{ overflowX: { xs: "scroll" } }} ref={scrollRef}>
-      <Stack direction="row" gap={2} ref={animationRef}>
+      <Stack direction="row" gap={2} ref={animationRef} sx={{ flexWrap: {xs: "nowrap", sm: "wrap"}}}>
         {icons.map((icon, index) => (
           <Tooltip
             key={index}

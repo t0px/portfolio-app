@@ -8,23 +8,31 @@
     transition: width 0.5s ease;
 }
 
+.sidenav-item::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 90%;
+    background: #121212;
+    border-radius: 20px;
+    transition: width 0.5s ease;
+    z-index: -1;
+    opacity: 0.75;
+}
+
 .sidenav-item {
     position: relative;
+    width: fit-content;
     display: flex;
     justify-content: center;
-    width: fit-content;
-    transition: color 0.5s ease;
+    align-items: center;
 }
 
 .sidenav-item:hover::before {
     width: 100%;
 }
 
-.sidenav-item:hover {
-    color: white;
-}
-
-.active-link::before {
+.active-link::after {
     width: 100%;
 }
 

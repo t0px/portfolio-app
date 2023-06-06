@@ -87,7 +87,7 @@ const ContactSection = ({ timeline, ease }) => {
         src="src/assets/Shapes/Heart.png"
         sx={{
           position: "absolute",
-          top: { xs: -85, lg: 185 },
+          top: { xs: -85, lg: 155 },
           right: { xs: -250, lg: 300 },
           pointerEvents: "none",
           display: { xs: "none", xl: "inherit" },
@@ -135,66 +135,67 @@ const ContactSection = ({ timeline, ease }) => {
           width: { xs: 150, sm: 230, lg: 240 },
         }}
       >
-        <StyledInput
-          component="input"
-          placeholder="Your Name"
-          sx={{
-            mb: 6,
-            pb: 1.5,
-            fontSize: { xs: 14, sm: 15, lg: 16 },
-          }}
-        ></StyledInput>
-        <StyledInput
-          component="input"
-          placeholder="Email Address"
-          sx={{
-            mb: 6,
-            pb: 1.5,
-            fontSize: { xs: 14, sm: 15, lg: 16 },
-            transition: "all 0.3s ease",
-          }}
-        ></StyledInput>
-        <Box
-          rows={3}
-          cols={20}
-          component="textarea"
-          placeholder="Your Message"
-          sx={{
-            border: "none",
-            color: "#E0E0E0",
-            bgcolor: "#282627",
-            width: "200%",
-            boxSizing: "border-box",
-            fontFamily: "Poppins",
-            fontSize: { xs: 14, sm: 15, lg: 16 },
-            borderRadius: 2,
-            px: 2,
-            pt: 2,
-            pb: 1.5,
-            resize: "none",
-            transition: "all 0.3s ease",
-            opacity: 0.85,
-            "&:focus": {
-              boxShadow: "0 0 300px 0 rgba(255,255,255,0.15)",
-              outline: "none",
-              //   border: "1px solid #fff",
-            },
-          }}
-        ></Box>
-        <SendButton
-          variant="contained"
-          sx={{
-            width: { xs: 300, sm: 150 },
-            borderRadius: { xs: 2, sm: 40 },
-          }}
-          component="a"
-          href="#contact"
-          className="send-btn"
-          endIcon={<SendIcon />}
-          onClick={() => console.log(isAnimating)}
-        >
-          Send
-        </SendButton>
+        <form action="">
+          <StyledInput
+            component="input"
+            placeholder="Your Name"
+            sx={{
+              mb: 6,
+              pb: 1.5,
+              fontSize: { xs: 14, sm: 15, lg: 16 },
+            }}
+          ></StyledInput>
+          <StyledInput
+            component="input"
+            placeholder="Email Address"
+            sx={{
+              mb: 6,
+              pb: 1.5,
+              fontSize: { xs: 14, sm: 15, lg: 16 },
+              transition: "all 0.3s ease",
+            }}
+          ></StyledInput>
+          <Box
+            rows={3}
+            cols={20}
+            component="textarea"
+            placeholder="Your Message"
+            sx={{
+              border: "none",
+              color: "#E0E0E0",
+              bgcolor: "#282627",
+              width: "200%",
+              boxSizing: "border-box",
+              fontFamily: "Poppins",
+              fontSize: { xs: 14, sm: 15, lg: 16 },
+              borderRadius: 2,
+              px: 2,
+              pt: 2,
+              pb: 1.5,
+              resize: "none",
+              transition: "all 0.3s ease",
+              opacity: 0.85,
+              "&:focus": {
+                boxShadow: "0 0 300px 0 rgba(255,255,255,0.15)",
+                outline: "none",
+                //   border: "1px solid #fff",
+              },
+            }}
+          ></Box>
+          <SendButton
+          type="submit"
+            variant="contained"
+            sx={{
+              width: { xs: 300, sm: 150 },
+              borderRadius: { xs: 2, sm: 40 },
+            }}
+            component="a"
+            className="send-btn"
+            endIcon={<SendIcon />}
+          >
+            Send
+          </SendButton>
+        </form>
       </FormControl>
     </Grid>
   );

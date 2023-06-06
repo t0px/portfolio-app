@@ -56,7 +56,7 @@ const KnowledgeSection = ({ timeline, ease }) => {
         useBearStore.setState({ isAnimating: true });
         timeline.from(icons.current.children, 0.75, {
           stagger: {
-            amount: 0.75,
+            amount: 1.5,
           },
           y: 400,
           ease: ease,

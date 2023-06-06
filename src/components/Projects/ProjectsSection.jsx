@@ -5,12 +5,16 @@ import Preview from "./Preview";
 import { useEffect, useRef, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import useBearStore from "../../hooks/bearStore";
+import styled from "@emotion/styled";
+import { Button } from "@mui/material";
 
 const ProjectsSection = ({ projects, timeline, ease }) => {
   let previewTab = useRef(null);
   const [isAnimating, setIsAnimating] = useState(false);
 
   const [knowledgeRef, inView] = useInView();
+
+  //animation & active link
   useEffect(() => {
     if (inView) {
         useBearStore.setState({ isActiveLink: "#projects" });
