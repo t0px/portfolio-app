@@ -1,7 +1,9 @@
-import { Container } from "@mui/system";
+import { Box, Container } from "@mui/system";
 import Navbar from "./Navbar";
 import Hero from "./Hero";
 import { gsap, Power3 } from "gsap";
+import styled from "@emotion/styled";
+
 
 const Home = () => {
 
@@ -11,9 +13,6 @@ const Home = () => {
 
   return (
     <Container component="header" disableGutters>
-      {
-        //TODO: Maybe I'll move navbar to App
-      }
       <Navbar timeline={tl} ease={ease} />
       <Hero timeline={tl} ease={ease} />
     </Container>

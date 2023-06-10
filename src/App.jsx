@@ -1,4 +1,4 @@
-import { Alert, Grid } from "@mui/material";
+import { Alert, Grid, Paper } from "@mui/material";
 import { theme } from "./theme";
 import { Box, ThemeProvider } from "@mui/system";
 import "./css/default.css";
@@ -63,28 +63,28 @@ function App() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   return (
-    <ThemeProvider theme={theme}>
-      <AlertMsg />
-      <Logo />
-      <ArrowNav
-        timeline={tl}
-        ease={ease}
-        currentIndex={currentIndex}
-        setCurrentIndex={setCurrentIndex}
-        currentPage={currentPage}
-        setCurrentPage={setCurrentPage}
-        pageItems={pageItems}
-      />
-      <Sidebar
-        currentIndex={currentIndex}
-        setCurrentIndex={setCurrentIndex}
-        timeline={tl}
-        ease={ease}
-      />
-      {pageItems.map((item, index) => (
-        <PageWrapper item={item} key={index} />
-      ))}
-    </ThemeProvider>
+      <ThemeProvider theme={theme}>
+          <AlertMsg />
+          <Logo />
+          <ArrowNav
+            timeline={tl}
+            ease={ease}
+            currentIndex={currentIndex}
+            setCurrentIndex={setCurrentIndex}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+            pageItems={pageItems}
+          />
+          <Sidebar
+            currentIndex={currentIndex}
+            setCurrentIndex={setCurrentIndex}
+            timeline={tl}
+            ease={ease}
+          />
+          {pageItems.map((item, index) => (
+            <PageWrapper item={item} key={index}/>
+          ))}
+      </ThemeProvider>
   );
 }
 

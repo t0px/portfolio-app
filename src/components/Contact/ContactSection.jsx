@@ -12,6 +12,7 @@ import SendIcon from "@mui/icons-material/Send";
 import { useInView } from "react-intersection-observer";
 import { useEffect, useRef, useState } from "react";
 import useBearStore from "../../hooks/bearStore";
+import { useForm, ValidationError } from "@formspree/react";
 
 const SendButton = styled(Button)({
   backgroundColor: "transparent",
@@ -47,10 +48,17 @@ const StyledInput = styled(Box)({
 
 const ContactSection = ({ timeline, ease }) => {
 
+    //Form handling
+    const [state, handleSubmit] = useForm("mzbqqlrj");
+    if (state.succeeded) {
+        return <p>Thanks for your feedback!</p>
+    }
+
     const isAnimating = useBearStore((state) => state.isAnimating);
 
     let form = useRef(null);
   const [contactRef, inView] = useInView();
+
 
   useEffect(() => {
     if (inView) {
@@ -127,7 +135,7 @@ const ContactSection = ({ timeline, ease }) => {
         quickly as possible.
       </Typography>
 
-      <FormControl
+      <Box
         ref={form}
         sx={{
           display: "flex",
@@ -135,9 +143,11 @@ const ContactSection = ({ timeline, ease }) => {
           width: { xs: 150, sm: 230, lg: 240 },
         }}
       >
-        <form action="">
+        <form onSubmit={handleSubmit}>
           <StyledInput
             component="input"
+            name="Name"
+            required
             placeholder="Your Name"
             sx={{
               mb: 6,
@@ -145,8 +155,16 @@ const ContactSection = ({ timeline, ease }) => {
               fontSize: { xs: 14, sm: 15, lg: 16 },
             }}
           ></StyledInput>
+          <ValidationError
+            prefix="Name"
+            field="name"
+            errors={state.errors}
+          />
           <StyledInput
             component="input"
+            name="Email"
+            required
+            type="email"
             placeholder="Email Address"
             sx={{
               mb: 6,
@@ -155,10 +173,13 @@ const ContactSection = ({ timeline, ease }) => {
               transition: "all 0.3s ease",
             }}
           ></StyledInput>
+          <ValidationError prefix="Email" field="email" errors={state.errors} />
           <Box
             rows={3}
             cols={20}
             component="textarea"
+            name="Message Content"
+            required
             placeholder="Your Message"
             sx={{
               border: "none",
@@ -182,9 +203,15 @@ const ContactSection = ({ timeline, ease }) => {
               },
             }}
           ></Box>
+          <ValidationError
+            prefix="Message"
+            field="message"
+            errors={state.errors}
+          />
           <SendButton
-          type="submit"
+            type="submit"
             variant="contained"
+            disabled={state.submitting}
             sx={{
               width: { xs: 300, sm: 150 },
               borderRadius: { xs: 2, sm: 40 },
@@ -196,7 +223,7 @@ const ContactSection = ({ timeline, ease }) => {
             Send
           </SendButton>
         </form>
-      </FormControl>
+      </Box>
     </Grid>
   );
 };

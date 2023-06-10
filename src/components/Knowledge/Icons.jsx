@@ -1,6 +1,5 @@
 import { Tooltip } from "@mui/material";
 import { Box, Stack } from "@mui/system";
-import "../../css/Knowledge/icons.css";
 
 const icons = [
   {
@@ -47,10 +46,20 @@ const icons = [
 
 const Icons = ({ animationRef, scrollRef }) => {
   return (
-    <Box sx={{ overflowX: { xs: "scroll" } }} ref={scrollRef}>
-      <Stack direction="row" gap={2} ref={animationRef} sx={{ flexWrap: {xs: "nowrap", sm: "wrap"}}}>
+    <Box
+      sx={{ overflowX: { xs: "scroll", sm: "none" } }}
+      ref={scrollRef}
+      className="hide-scrollbar"
+    >
+      <Stack
+        direction="row"
+        gap={2}
+        ref={animationRef}
+        sx={{ flexWrap: { xs: "nowrap", sm: "wrap" } }}
+      >
         {icons.map((icon, index) => (
           <Tooltip
+          className="tool-tip"
             key={index}
             title={icon.name}
             placement="bottom"

@@ -64,7 +64,7 @@ const AboutSection = () => {
           fontSize: {
             xs: 14,
             sm: 16,
-            sm: 18,
+            md: 18,
           },
           color: "#E0E0E0",
           maxWidth: {
